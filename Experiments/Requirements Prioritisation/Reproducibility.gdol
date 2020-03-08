@@ -1,0 +1,34 @@
+%% Reproducibility insight value
+Completeness_DP[rp:frustration][rp:Challenge] 
+Completeness_DP[rp:motivation][rp:Opportunity] 
+Completeness_DP[rp:business_case][rp:Insight]
+
+%% Reproducibility vision contribution
+Completeness_DP[rp:vision_contribution][rp:Insight] 
+Completeness_DP[rp:vision_statement][rp:Vision] 
+Completeness_DP[rp:vision_time_frame][rp:Vision] 
+Completeness_DP[rp:measurable_objective][rp:Vision] 
+Completeness_DP[rp:objective_time_frame][rp:Vision] 
+Completeness_DP[rp:target_conditions][rp:Vision] 
+Completeness_DP[rp:current_state][rp:Vision] 
+
+%% Reproducibility insight reach
+Completeness_OP[rp:frustrates][rp:Challenge][rp:Stakeholder] 
+Completeness_OP[rp:motivates][rp:Opportunity][rp:Stakeholder] 
+
+%% Reproducibility requirement cost
+Completeness_DP[rp:knowledge_cost][rp:Requirement] 
+Completeness_DP[rp:equipment_cost][rp:Requirement] 
+Completeness_DP[rp:size][rp:Requirement] 
+
+%% Reproducibility requirement value
+Completeness_DP[rp:increase_revenue][rp:Requirement] 
+Completeness_DP[rp:decrease_cost][rp:Requirement] 
+Completeness_DP[rp:decrease_risk][rp:Requirement] 
+
+%% Reproducibility insight contribution
+Completeness_DP[rp:insight_contribution][rp:Insight] 
+
+%% Reproducibility requirement confidence
+Completeness_DP[rp:knowledge_cost][rp:Requirement] 
+Completeness_DP[rp:size][rp:Requirement] 
