@@ -576,6 +576,7 @@
 
     <owl:Class rdf:about="http://www.marioverhaeg.nl/rp#Challenge">
         <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/rp#Insight"/>
+        <owl:disjointWith rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity"/>
     </owl:Class>
     
 
