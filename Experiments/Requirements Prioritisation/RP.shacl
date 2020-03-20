@@ -159,11 +159,16 @@ rp:InformationShape
 		sh:minCount 1; 
 		sh:message "Completeness: expand Information with a value."; ];
 	sh:property [
-		sh:path rp:data_argumentation;
+		sh:path rp:data_description;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Information with argumentation."; ].
-		
+		sh:message "Completeness: expand Information with description."; ];
+	sh:property [
+		sh:path rp:conflict_with_evidence; 
+		sh:severity sh:Violation; 
+		sh:maxCount 0; 
+		sh:message "Conflict: reconsider using the evidence."; ].
+			
 rp:Vision_Measurable_ObjectiveShape 
 	a sh:NodeShape;
 	sh:targetClass rp:Vision_Measurable_Objective; 
