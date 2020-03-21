@@ -147,12 +147,11 @@ rp:InformationShape
 	sh:targetClass rp:Information; 
 	sh:property [
 		sh:or (
-			[sh:path rp:based_on_evidence; sh:minCount 1;]
+			[sh:path rp:based_on_evidence; sh:minCount 2;]
 			[sh:path rp:based_on_information; sh:minCount 1;]
 		);
 		sh:severity sh:Violation; 
-		sh:minCount 1; 
-		sh:message "Reproducibility: enter an information or evidence source for this information."; ];
+		sh:message "Reproducibility & Consensus: increase the number of evidence sources for this information."; ];
 	sh:property [
 		sh:path rp:data_value;
 		sh:severity sh:Violation; 
@@ -162,7 +161,7 @@ rp:InformationShape
 		sh:path rp:data_description;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Information with description."; ];
+		sh:message "Completeness: expand Information with a description."; ];
 	sh:property [
 		sh:path rp:conflict_with_evidence; 
 		sh:severity sh:Violation; 

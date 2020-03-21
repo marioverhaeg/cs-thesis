@@ -276,9 +276,9 @@
 
 ###  http://www.marioverhaeg.nl/rp#data_description
 :data_description rdf:type owl:DatatypeProperty ,
-                             owl:FunctionalProperty ;
-                    rdfs:domain :Information ;
-                    rdfs:range xsd:string .
+                           owl:FunctionalProperty ;
+                  rdfs:domain :Information ;
+                  rdfs:range xsd:string .
 
 
 ###  http://www.marioverhaeg.nl/rp#data_value
@@ -583,7 +583,29 @@
 ###  http://www.marioverhaeg.nl/rp#Challenge_SC2
 :Challenge_SC2 rdf:type owl:NamedIndividual ,
                         :Challenge ;
-               :addressed_by :Requirement_SC2 .
+               :addressed_by :Requirement_SC2 ;
+               :has_information_insight_business_case :Challenge_SC2_Business_Case ;
+               :has_information_insight_reach :Challenge_SC2_Reach ;
+               :has_information_insight_value :Challenge_SC2_Value .
+
+
+###  http://www.marioverhaeg.nl/rp#Challenge_SC2_Business_Case
+:Challenge_SC2_Business_Case rdf:type owl:NamedIndividual ;
+                             :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                             :data_description "business case description"^^xsd:string ;
+                             :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/rp#Challenge_SC2_Reach
+:Challenge_SC2_Reach rdf:type owl:NamedIndividual ;
+                     :based_on_evidence :Stakeholder_Experience_SC2 ;
+                     :data_description "insight reach"^^xsd:string ;
+                     :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/rp#Challenge_SC2_Value
+:Challenge_SC2_Value rdf:type owl:NamedIndividual ;
+                     :based_on_information :Challenge_SC2_Business_Case .
 
 
 ###  http://www.marioverhaeg.nl/rp#Challenge_SC3
@@ -680,6 +702,12 @@
                                       :Contextual_Circumstance .
 
 
+###  http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC2
+:Contextual_Circumstance_SC2 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance ;
+                             :agrees_with :Evaluated_External_Evidence_SC2 .
+
+
 ###  http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC4
 :Contextual_Circumstance_SC4 rdf:type owl:NamedIndividual ,
                                       :Contextual_Circumstance ;
@@ -690,6 +718,12 @@
 :Evaluated_External_Evidence_SC1 rdf:type owl:NamedIndividual ,
                                           :Evaluated_External_Evidence ;
                                  :agrees_with :Contextual_Circumstance_SC1 .
+
+
+###  http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC2
+:Evaluated_External_Evidence_SC2 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence ;
+                                 :agrees_with :Stakeholder_Experience_SC2 .
 
 
 ###  http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC4
@@ -749,7 +783,21 @@
 ###  http://www.marioverhaeg.nl/rp#Opportunity_SC2
 :Opportunity_SC2 rdf:type owl:NamedIndividual ,
                           :Opportunity ;
-                 :addressed_by :Requirement_SC2 .
+                 :addressed_by :Requirement_SC2 ;
+                 :has_information_insight_vision_contribution :Opportunity_SC2_Vision_Contribution ;
+                 :has_information_opportunity_motivation :Opportunity_SC2_Motivation .
+
+
+###  http://www.marioverhaeg.nl/rp#Opportunity_SC2_Motivation
+:Opportunity_SC2_Motivation rdf:type owl:NamedIndividual ;
+                            :based_on_evidence :Stakeholder_Value_SC2 ;
+                            :data_description "motivation description"^^xsd:string ;
+                            :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/rp#Opportunity_SC2_Vision_Contribution
+:Opportunity_SC2_Vision_Contribution rdf:type owl:NamedIndividual ;
+                                     :based_on_information :Vision_SC2_Statement .
 
 
 ###  http://www.marioverhaeg.nl/rp#Opportunity_SC3
@@ -935,7 +983,29 @@
 
 ###  http://www.marioverhaeg.nl/rp#Requirement_SC2
 :Requirement_SC2 rdf:type owl:NamedIndividual ,
-                          :Requirement .
+                          :Requirement ;
+                 :has_information_requirement_confidence :Requirement_SC2_Confidence ;
+                 :has_information_requirement_cost :Requirement_SC2_Cost ;
+                 :has_information_requirement_size :Requirement_SC2_Size .
+
+
+###  http://www.marioverhaeg.nl/rp#Requirement_SC2_Confidence
+:Requirement_SC2_Confidence rdf:type owl:NamedIndividual ;
+                            :based_on_information :Requirement_SC2_Size ;
+                            :data_description "confidence description"^^xsd:string ;
+                            :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/rp#Requirement_SC2_Cost
+:Requirement_SC2_Cost rdf:type owl:NamedIndividual ;
+                      :based_on_information :Requirement_SC2_Size .
+
+
+###  http://www.marioverhaeg.nl/rp#Requirement_SC2_Size
+:Requirement_SC2_Size rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Stakeholder_Experience_SC2 ;
+                      :data_description "size description"^^xsd:string ;
+                      :data_value "4"^^xsd:int .
 
 
 ###  http://www.marioverhaeg.nl/rp#Requirement_SC3
@@ -1112,6 +1182,13 @@
                             :shared_by :Stakeholder_SC1 .
 
 
+###  http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC2
+:Stakeholder_Experience_SC2 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :agrees_with :Stakeholder_Value_SC2 ;
+                            :shared_by :Stakeholder_SC2 .
+
+
 ###  http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC4
 :Stakeholder_Experience_SC4 rdf:type owl:NamedIndividual ,
                                      :Stakeholder_Experience ;
@@ -1124,6 +1201,12 @@
                           :Stakeholder .
 
 
+###  http://www.marioverhaeg.nl/rp#Stakeholder_SC2
+:Stakeholder_SC2 rdf:type owl:NamedIndividual ,
+                          :Stakeholder ;
+                 :shared_by :Stakeholder_SC2 .
+
+
 ###  http://www.marioverhaeg.nl/rp#Stakeholder_SC4
 :Stakeholder_SC4 rdf:type owl:NamedIndividual .
 
@@ -1132,6 +1215,12 @@
 :Stakeholder_Value_SC1 rdf:type owl:NamedIndividual ,
                                 :Stakeholder_Value ;
                        :shared_by :Stakeholder_SC1 .
+
+
+###  http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC2
+:Stakeholder_Value_SC2 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakeholder_SC2 .
 
 
 ###  http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC4
@@ -1146,7 +1235,7 @@
                      :Vision ;
             :has_information_vision_current_state :Vision_SC1_Current_State ;
             :has_information_vision_measurable_objective :Vision_SC1_Measurable_Objective ;
-            :has_information_vision_statement :Vision_SC1_Vision_Statement ;
+            :has_information_vision_statement :Vision_SC1_Statement ;
             :has_information_vision_target_condition :Vision_SC1_Target_Condition .
 
 
@@ -1165,6 +1254,14 @@
                                  :time_frame "2030-01-01T00:00:00"^^xsd:dateTime .
 
 
+###  http://www.marioverhaeg.nl/rp#Vision_SC1_Statement
+:Vision_SC1_Statement rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Stakeholder_Value_SC1 ;
+                      :data_description "Vision statement description"^^xsd:string ;
+                      :data_value "0"^^xsd:int ;
+                      :time_frame "2030-01-01T00:00:00"^^xsd:dateTime .
+
+
 ###  http://www.marioverhaeg.nl/rp#Vision_SC1_Target_Condition
 :Vision_SC1_Target_Condition rdf:type owl:NamedIndividual ;
                              :based_on_evidence :Stakeholder_Value_SC1 ;
@@ -1172,17 +1269,18 @@
                              :data_value "0"^^xsd:int .
 
 
-###  http://www.marioverhaeg.nl/rp#Vision_SC1_Vision_Statement
-:Vision_SC1_Vision_Statement rdf:type owl:NamedIndividual ;
-                             :based_on_evidence :Stakeholder_Value_SC1 ;
-                             :data_description "Vision statement description"^^xsd:string ;
-                             :data_value "0"^^xsd:int ;
-                             :time_frame "2030-01-01T00:00:00"^^xsd:dateTime .
-
-
 ###  http://www.marioverhaeg.nl/rp#Vision_SC2
 :Vision_SC2 rdf:type owl:NamedIndividual ,
-                     :Vision .
+                     :Vision ;
+            :has_information_vision_statement :Vision_SC2_Statement .
+
+
+###  http://www.marioverhaeg.nl/rp#Vision_SC2_Statement
+:Vision_SC2_Statement rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Stakeholder_Value_SC2 ;
+                      :data_description "vision statement"^^xsd:string ;
+                      :data_value "5"^^xsd:int ;
+                      :time_frame "2030-01-01T00:00:00"^^xsd:dateTime .
 
 
 ###  http://www.marioverhaeg.nl/rp#Vision_SC3
