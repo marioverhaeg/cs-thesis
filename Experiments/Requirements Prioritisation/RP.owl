@@ -32,12 +32,6 @@
     
 
 
-    <!-- http://www.marioverhaeg.nl/rp#reproduces -->
-
-    <owl:AnnotationProperty rdf:about="http://www.marioverhaeg.nl/rp#reproduces"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -118,7 +112,7 @@
 
     <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/rp#disagrees_with">
         <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
         <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
         <rdfs:range rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
     </owl:ObjectProperty>
@@ -1050,6 +1044,72 @@
     
 
 
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Challenge"/>
+        <addressed_by rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5"/>
+        <has_information_challenge_frustration rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Frustration"/>
+        <has_information_insight_business_case rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Business_Case"/>
+        <has_information_insight_reach rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Reach"/>
+        <has_information_insight_value rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Value"/>
+        <has_information_insight_vision_contribution rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Vision_Contribution"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5_Business_Case -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5_Business_Case">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5_Frustration -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5_Frustration">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">frustration description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5_Reach -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5_Reach">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insight reach description.</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5_Value -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5_Value">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Business_Case"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Frustration"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insight value description.</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Challenge_SC5_Vision_Contribution -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Challenge_SC5_Vision_Contribution">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Current_State"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Measurable_Objective"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vision contribution description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</data_value>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC1 -->
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC1">
@@ -1071,7 +1131,16 @@
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC4">
         <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance"/>
+        <agrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC4"/>
         <disagrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance"/>
     </owl:NamedIndividual>
     
 
@@ -1098,7 +1167,15 @@
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC4">
         <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence"/>
-        <disagrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC4"/>
+        <agrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence"/>
     </owl:NamedIndividual>
     
 
@@ -1317,6 +1394,72 @@
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC4_Vision_Contribution">
         <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC4_Current_State"/>
         <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC4_Measurable_Objective"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vision contribution description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity"/>
+        <addressed_by rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5"/>
+        <has_information_insight_business_case rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Business_Case"/>
+        <has_information_insight_reach rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Reach"/>
+        <has_information_insight_value rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Value"/>
+        <has_information_insight_vision_contribution rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Vision_Contribution"/>
+        <has_information_opportunity_motivation rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Motivation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5_Business_Case -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Business_Case">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">business case description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5_Motivation -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Motivation">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">motivation description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5_Reach -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Reach">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insight reach description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5_Value -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Value">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Business_Case"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Motivation"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">insight value description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Opportunity_SC5_Vision_Contribution -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Vision_Contribution">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Current_State"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Measurable_Objective"/>
         <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vision contribution description</data_description>
         <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</data_value>
     </owl:NamedIndividual>
@@ -1720,6 +1863,131 @@
     
 
 
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Requirement"/>
+        <has_information_requirement_confidence rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Confidence"/>
+        <has_information_requirement_cost rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Cost"/>
+        <has_information_requirement_cost rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Cost"/>
+        <has_information_requirement_decrease_cost rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Risk"/>
+        <has_information_requirement_decrease_risk rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Risk"/>
+        <has_information_requirement_equipment_cost rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Equipment_Cost"/>
+        <has_information_requirement_increase_revenue rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Increase_Revenue"/>
+        <has_information_requirement_insight_contribution rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Insight_Contribution"/>
+        <has_information_requirement_knowledge_cost rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Knowledge_Cost"/>
+        <has_information_requirement_size rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Size"/>
+        <has_information_requirement_value rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Value"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Confidence -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Confidence">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Knowledge_Cost"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Size"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requirement confidence description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Cost -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Cost">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Equipment_Cost"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Knowledge_Cost"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Size"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requirement cost description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Cost -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Cost">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">decreased cost description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Risk -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Risk">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">decreased risk description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Equipment_Cost -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Equipment_Cost">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Equipment cost description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Increase_Revenue -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Increase_Revenue">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increased revenue description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">6</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Insight_Contribution -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Insight_Contribution">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Challenge_SC5_Frustration"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Opportunity_SC5_Motivation"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insight contribution description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">7</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Knowledge_Cost -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Knowledge_Cost">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Knowledge cost description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Size -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Size">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Contextual_Circumstance_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Requirement_SC5_Value -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Requirement_SC5_Value">
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Cost"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Decrease_Risk"/>
+        <based_on_information rdf:resource="http://www.marioverhaeg.nl/rp#Requirement_SC5_Increase_Revenue"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Requirement value description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">9</data_value>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC1 -->
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC1">
@@ -1744,8 +2012,16 @@
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC4">
         <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience"/>
-        <disagrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Evaluated_External_Evidence_SC4"/>
         <shared_by rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_SC4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience"/>
+        <shared_by rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_SC5"/>
     </owl:NamedIndividual>
     
 
@@ -1769,7 +2045,15 @@
 
     <!-- http://www.marioverhaeg.nl/rp#Stakeholder_SC4 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_SC4"/>
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_SC4">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Stakeholder_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_SC5"/>
     
 
 
@@ -1797,6 +2081,15 @@
         <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value"/>
         <disagrees_with rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Experience_SC4"/>
         <shared_by rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_SC4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value"/>
+        <shared_by rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_SC5"/>
     </owl:NamedIndividual>
     
 
@@ -1971,6 +2264,60 @@
 
     <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC4_Vision_Statement">
         <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC4"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vision statement description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</data_value>
+        <time_frame rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2030-01-01T00:00:00</time_frame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Vision_SC5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Vision"/>
+        <has_information_vision_current_state rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Current_State"/>
+        <has_information_vision_measurable_objective rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Measurable_Objective"/>
+        <has_information_vision_statement rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Vision_Statement"/>
+        <has_information_vision_target_condition rdf:resource="http://www.marioverhaeg.nl/rp#Vision_SC5_Target_Condition"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Vision_SC5_Current_State -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC5_Current_State">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Current state description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Vision_SC5_Measurable_Objective -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC5_Measurable_Objective">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Measurable objective description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</data_value>
+        <time_frame rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2030-01-01T00:00:00</time_frame>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Vision_SC5_Target_Condition -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC5_Target_Condition">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5"/>
+        <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Target condition description</data_description>
+        <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</data_value>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Vision_SC5_Vision_Statement -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Vision_SC5_Vision_Statement">
+        <based_on_evidence rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder_Value_SC5"/>
         <data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vision statement description</data_description>
         <data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</data_value>
         <time_frame rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2030-01-01T00:00:00</time_frame>
