@@ -6,31 +6,31 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix rp: <http://www.marioverhaeg.nl/rp#> .
 
-rp:InsightShape 
+rp:Addressed_InsightShape 
 	a sh:NodeShape;
 	sh:targetClass rp:Addressed_Insight; 
 	sh:property [
 		sh:path rp:has_information_insight_value;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Addressed_Insight with insight_value."; ];
+		sh:message "Completeness: expand the Insight with an insight_value."; ];
 	sh:property [
 		sh:path rp:has_information_insight_vision_contribution;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Addressed_Insight with vision_contribution."; ];
+		sh:message "Completeness: expand the Insight with a vision_contribution."; ];
 	sh:property [
 		sh:path rp:has_information_insight_reach;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Addressed_Insight with insight_reach."; ];
+		sh:message "Completeness: expand the Insight with an insight_reach."; ];
 	sh:property [
 		sh:path rp:has_information_insight_business_case;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Insight with business_case."; ].
+		sh:message "Completeness: expand the Insight with a business_case."; ].
 
-rp:OpportunityShape
+rp:Addressed_OpportunityShape
 	a sh:NodeShape;
 	sh:targetClass rp:Addressed_Opportunity;
 	sh:property [
@@ -40,7 +40,7 @@ rp:OpportunityShape
 		sh:message "Completeness: expand Addressed_Opportunity with opportunity_motivation."; 
 	].
 
-rp:ChallengeShape
+rp:Addressed_ChallengeShape
 	a sh:NodeShape;
 	sh:targetClass rp:Addressed_Challenge;
 	sh:property [
@@ -50,7 +50,7 @@ rp:ChallengeShape
 		sh:message "Completeness: expand Addressed_Challenge with challenge_frustration."; 
 	].
 
-rp:StakeholderShape a sh:NodeShape;
+rp:Stakeholder_EvidenceShape a sh:NodeShape;
 	sh:targetClass rp:Stakeholder_Evidence; 
 	sh:property [
 		sh:path rp:shared_by;
@@ -66,57 +66,57 @@ rp:RequirementShape
 		sh:path rp:has_information_requirement_insight_contribution;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with insight_contribution."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_insight_contribution."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_value;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with requirement_value."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_value."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_cost;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with requirement_cost."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_cost."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_confidence;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with requirement_confidence ."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_confidence ."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_knowledge_cost;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with knowledge_cost."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_knowledge_cost."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_equipment_cost;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with equipment_cost."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_equipment_cost."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_size;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with size."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_size."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_increase_revenue;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with increase_revenue."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_increase_revenue."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_decrease_cost;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with decrease_cost."; ];
+		sh:message "Completeness: expand the Requirement with a requirement_decrease_cost."; ];
 	sh:property [
 		sh:path rp:has_information_requirement_decrease_risk;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-	sh:message "Completeness: expand Requirement with decrease_risk."; ];
+	sh:message "Completeness: expand the Requirement with a requirement_decrease_risk."; ];
 		sh:property [
 		sh:path rp:addresses; 
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Requirement with addresses."; ].
+		sh:message "Completeness: expand the Requirement with addresses."; ].
 
 rp:VisionShape
 	a sh:NodeShape;
@@ -125,22 +125,22 @@ rp:VisionShape
 		sh:path rp:has_information_vision_statement;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Vision with vision_statement."; ];
+		sh:message "Completeness: expand the Vision with a vision_statement."; ];
 	sh:property [
 		sh:path rp:has_information_vision_measurable_objective;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Vision with measurable_objective."; ];
+		sh:message "Completeness: expand the Vision with a vision_measurable_objective."; ];
 	sh:property [
 		sh:path rp:has_information_vision_target_condition;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Vision with target_condition."; ];
+		sh:message "Completeness: expand the Vision with a vision_target_condition."; ];
 	sh:property [
 		sh:path rp:has_information_vision_current_state;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Vision with current_state."; ].
+		sh:message "Completeness: expand the Vision with a vision_current_state."; ].
 
 rp:InformationShape 
 	a sh:NodeShape;
@@ -156,12 +156,12 @@ rp:InformationShape
 		sh:path rp:data_value;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Information with a value."; ];
+		sh:message "Completeness: expand the Information with a value."; ];
 	sh:property [
 		sh:path rp:data_description;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand Information with a description."; ];
+		sh:message "Completeness: expand the Information with a description."; ];
 	sh:property [
 		sh:path rp:conflict_with_evidence; 
 		sh:severity sh:Violation; 
@@ -175,7 +175,7 @@ rp:Vision_Measurable_ObjectiveShape
 		sh:path rp:time_frame;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand measurable_object with time frame."; ].
+		sh:message "Completeness: expand the measurable_object with a time_frame."; ].
 		
 rp:Vision_StatementShape 
 	a sh:NodeShape;
@@ -184,4 +184,4 @@ rp:Vision_StatementShape
 		sh:path rp:time_frame;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: expand vision_statement with time frame."; ].
+		sh:message "Completeness: expand the vision_statement with time_frame."; ].
