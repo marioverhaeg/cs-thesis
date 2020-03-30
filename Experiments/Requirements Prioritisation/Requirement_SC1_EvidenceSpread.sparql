@@ -1,0 +1,26 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rp: <http://www.marioverhaeg.nl/rp#>
+
+SELECT ?t (COUNT(DISTINCT ?t) as ?count)
+WHERE 
+{
+	# Case 1: m has information that is directly based on evidence.
+	{
+    	?x rp:based_on_evidence ?e .
+    	?m rp:has_information ?x .
+    	?e rdf:type ?t .
+    	FILTER(?m = rp:Requirement_SC1 && ?t != owl:Thing && ?t != rp:Evidence)
+	}
+	UNION
+	# Case 2: has information that is based on other information, that is based on evidence.
+	{
+    	?i rp:based_on_evidence ?e .
+    	?x rp:based_on_information ?i .
+    	?m rp:has_information ?x .
+    	?e rdf:type ?t .
+    	FILTER(?m = rp:Requirement_SC1 && ?t != owl:Thing && ?t != rp:Evidence)
+	}
+}
+GROUP BY ?t

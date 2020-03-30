@@ -111,8 +111,8 @@ rp:RequirementShape
 		sh:path rp:has_information_requirement_decrease_risk;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-	sh:message "Completeness: expand the Requirement with a requirement_decrease_risk."; ];
-		sh:property [
+		sh:message "Completeness: expand the Requirement with a requirement_decrease_risk."; ];
+	sh:property [
 		sh:path rp:addresses; 
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
