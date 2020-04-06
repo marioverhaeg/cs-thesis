@@ -9,15 +9,14 @@ WHERE
 	{
 		?m rp:has_information ?i .
     	?i rp:based_on_evidence ?e .
-    	FILTER(?m = rp:Opportunity_SC4)
 	}
 	UNION
 	{
 		?m rp:has_information ?x .
 		?x rp:based_on_information ?i .
     	?i rp:based_on_evidence ?e .
-    	FILTER(?m = rp:Opportunity_SC4)
 	}
+	FILTER(?m = rp:Vision_SC1)
 }
 
 

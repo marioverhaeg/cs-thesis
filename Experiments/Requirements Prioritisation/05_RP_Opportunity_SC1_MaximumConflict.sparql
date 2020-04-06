@@ -1,0 +1,22 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rp: <http://www.marioverhaeg.nl/rp#>
+
+SELECT (COUNT(DISTINCT ?i) as ?count)
+WHERE 
+{
+	{
+		?m rp:has_information ?i .
+    	?i rp:based_on_evidence ?e .
+	}
+	UNION
+	{
+		?m rp:has_information ?x .
+		?x rp:based_on_information ?i .
+    	?i rp:based_on_evidence ?e .
+	}
+	FILTER(?m = rp:Opportunity_SC4)
+}
+
+
