@@ -2069,7 +2069,9 @@
 
     <!-- http://www.marioverhaeg.nl/rp#Stakeholder_SC5 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_SC5"/>
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/rp#Stakeholder_SC5">
+        <rdf:type rdf:resource="http://www.marioverhaeg.nl/rp#Stakeholder"/>
+    </owl:NamedIndividual>
     
 
 
