@@ -355,11 +355,11 @@ rp:InformationShape a sh:NodeShape;
 	sh:targetClass rp:Information; 
 	sh:property [
 		sh:or (
-			[sh:path rp:based_on_evidence; sh:minCount 2;]
+			[sh:path rp:based_on_evidence; sh:minCount 1;]
 			[sh:path rp:based_on_information; sh:minCount 1;]
 		);
 		sh:severity sh:Violation; 
-		sh:message "Reproducibility & Consensus: increase the number of evidence sources for this information."; ];
+		sh:message "Reproducibility: increase the number of evidence sources for this information."; ];
 	sh:property [
 		sh:path rp:data_value;
 		sh:severity sh:Violation; 
@@ -375,6 +375,15 @@ rp:InformationShape a sh:NodeShape;
 		sh:severity sh:Violation; 
 		sh:maxCount 0; 
 		sh:message "Conflict: reconsider using the evidence."; 
+	].
+	
+rp:UsedEvidenceShape a sh:NodeShape;
+	sh:targetClass rp:Used_Evidence; 
+	sh:property [
+		sh:path rp:agrees_with; 
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Consensus: ensure the evidence is in agreement with at least one additional evidence source."; 
 	].
 			
 rp:Vision_Measurable_ObjectiveShape a sh:NodeShape;
