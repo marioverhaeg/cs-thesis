@@ -3,28 +3,29 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rp: <http://www.marioverhaeg.nl/rp#>
 
-SELECT DISTINCT ?c ?t 
+SELECT DISTINCT ?ri 
 WHERE 
 {
 	# Gather insights (opportunities and challenges)
 	{
-		?r rp:addresses ?c .
-		?c rdf:type ?t
+		?req rp:addresses ?ri .
+		?ri rdf:type ?t
 		FILTER(?t != owl:Thing &&
 		?t != rp:Addressed_Insight &&
 		?t != rp:Addressed_Opportunity &&
-		?t != rp:Addressed_Challenge).
+		?t != rp:Addressed_Challenge &&
+		?t != rp:Insight).
 	}
 	UNION
 	# Gather visions
 	{
-		?r rp:addresses ?i .
-		?i rp:has_information ?infa .
-		?infa rdf:type rp:Insight_Vision_Contribution .
-		?infa rp:based_on_information ?infb .
-		?c rp:has_information ?infb .
-		?c rdf:type ?t .	
+		?req rp:addresses ?ins .
+		?ins rp:has_information ?ivc .
+		?ivc rdf:type rp:Insight_Vision_Contribution .
+		?ivc rp:based_on_information ?vcs .
+		?ri rp:has_information ?vcs .
+		?ri rdf:type ?t .	
 		FILTER(?t != owl:Thing).				
 	}
-	FILTER(?r = rp:Requirement_SC1)
+	FILTER(?req = rp:Requirement_SC1 || ?req = rp:Requirement_SC2)
 }
