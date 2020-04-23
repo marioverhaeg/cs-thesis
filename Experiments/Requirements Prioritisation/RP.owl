@@ -51,8 +51,9 @@
 
 
 ###  http://www.marioverhaeg.nl/rp#based_on_information
-:based_on_information rdf:type owl:ObjectProperty ,
-                               owl:TransitiveProperty ;
+:based_on_information rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :information_used_for ;
+                      rdf:type owl:TransitiveProperty ;
                       rdfs:domain :Information ;
                       rdfs:range :Information .
 
@@ -64,6 +65,17 @@
                         owl:propertyChainAxiom ( :based_on_evidence
                                                  :disagrees_with
                                                ) .
+
+
+###  http://www.marioverhaeg.nl/rp#contributes_to_vision
+:contributes_to_vision rdf:type owl:ObjectProperty ;
+                       owl:inverseOf :has_insight ;
+                       rdfs:domain :Insight ;
+                       rdfs:range :Used_Vision ;
+                       owl:propertyChainAxiom ( :has_information_insight
+                                                :based_on_information
+                                                :information_of_vision
+                                              ) .
 
 
 ###  http://www.marioverhaeg.nl/rp#disagrees_with
@@ -93,6 +105,7 @@
 
 ###  http://www.marioverhaeg.nl/rp#has_information
 :has_information rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :information_of ;
                  rdfs:range :Information .
 
 
@@ -105,7 +118,8 @@
 
 ###  http://www.marioverhaeg.nl/rp#has_information_insight
 :has_information_insight rdf:type owl:ObjectProperty ;
-                         rdfs:subPropertyOf :has_information .
+                         rdfs:subPropertyOf :has_information ;
+                         owl:inverseOf :information_of_insight .
 
 
 ###  http://www.marioverhaeg.nl/rp#has_information_insight_business_case
@@ -145,7 +159,8 @@
 
 ###  http://www.marioverhaeg.nl/rp#has_information_requirement
 :has_information_requirement rdf:type owl:ObjectProperty ;
-                             rdfs:subPropertyOf :has_information .
+                             rdfs:subPropertyOf :has_information ;
+                             owl:inverseOf :information_of_requirement .
 
 
 ###  http://www.marioverhaeg.nl/rp#has_information_requirement_confidence
@@ -220,7 +235,8 @@
 
 ###  http://www.marioverhaeg.nl/rp#has_information_vision
 :has_information_vision rdf:type owl:ObjectProperty ;
-                        rdfs:subPropertyOf :has_information .
+                        rdfs:subPropertyOf :has_information ;
+                        owl:inverseOf :information_of_vision .
 
 
 ###  http://www.marioverhaeg.nl/rp#has_information_vision_current_state
@@ -249,6 +265,38 @@
                                          rdfs:subPropertyOf :has_information_vision ;
                                          rdfs:domain :Vision ;
                                          rdfs:range :Vision_Target_Condition .
+
+
+###  http://www.marioverhaeg.nl/rp#has_insight
+:has_insight rdf:type owl:ObjectProperty ;
+             rdfs:domain :Vision ;
+             rdfs:range :Insight .
+
+
+###  http://www.marioverhaeg.nl/rp#information_of
+:information_of rdf:type owl:ObjectProperty ;
+                rdfs:domain :Information .
+
+
+###  http://www.marioverhaeg.nl/rp#information_of_insight
+:information_of_insight rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :information_of .
+
+
+###  http://www.marioverhaeg.nl/rp#information_of_requirement
+:information_of_requirement rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf :information_of .
+
+
+###  http://www.marioverhaeg.nl/rp#information_of_vision
+:information_of_vision rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :information_of .
+
+
+###  http://www.marioverhaeg.nl/rp#information_used_for
+:information_used_for rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Information ;
+                      rdfs:range :Information .
 
 
 ###  http://www.marioverhaeg.nl/rp#less_important_than
@@ -550,6 +598,76 @@
                rdfs:subClassOf :Evidence .
 
 
+###  http://www.marioverhaeg.nl/rp#Used_Information
+:Used_Information rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :information_used_for ;
+                                        owl:someValuesFrom :Information
+                                      ] ;
+                  rdfs:subClassOf :Information .
+
+
+###  http://www.marioverhaeg.nl/rp#Used_Vision
+:Used_Vision rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty :has_insight ;
+                                   owl:someValuesFrom :Insight
+                                 ] ;
+             rdfs:subClassOf :Vision .
+
+
+###  http://www.marioverhaeg.nl/rp#Used_Vision_Current_State
+:Used_Vision_Current_State rdf:type owl:Class ;
+                           owl:equivalentClass [ owl:intersectionOf ( :Vision_Current_State
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty :information_used_for ;
+                                                                        owl:someValuesFrom :Insight_Vision_Contribution
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
+                                               ] ;
+                           rdfs:subClassOf :Vision_Current_State .
+
+
+###  http://www.marioverhaeg.nl/rp#Used_Vision_Measurable_Objective
+:Used_Vision_Measurable_Objective rdf:type owl:Class ;
+                                  owl:equivalentClass [ owl:intersectionOf ( :Vision_Measurable_Objective
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty :information_used_for ;
+                                                                               owl:someValuesFrom :Insight_Vision_Contribution
+                                                                             ]
+                                                                           ) ;
+                                                        rdf:type owl:Class
+                                                      ] ;
+                                  rdfs:subClassOf :Vision_Measurable_Objective .
+
+
+###  http://www.marioverhaeg.nl/rp#Used_Vision_Statement
+:Used_Vision_Statement rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( :Vision_Statement
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :information_used_for ;
+                                                                    owl:someValuesFrom :Insight_Vision_Contribution
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :Vision_Statement .
+
+
+###  http://www.marioverhaeg.nl/rp#Used_Vision_Target_Condition
+:Used_Vision_Target_Condition rdf:type owl:Class ;
+                              owl:equivalentClass [ owl:intersectionOf ( :Vision_Target_Condition
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty :information_used_for ;
+                                                                           owl:someValuesFrom :Insight_Vision_Contribution
+                                                                         ]
+                                                                       ) ;
+                                                    rdf:type owl:Class
+                                                  ] ;
+                              rdfs:subClassOf :Vision_Target_Condition .
+
+
 ###  http://www.marioverhaeg.nl/rp#Vision
 :Vision rdf:type owl:Class .
 
@@ -576,7 +694,7 @@
 
 ###  http://www.marioverhaeg.nl/rp#Vision_Target_Condition
 :Vision_Target_Condition rdf:type owl:Class ;
-                         rdfs:subClassOf :Information .
+                         rdfs:subClassOf :Vision_Information .
 
 
 #################################################################

@@ -67,7 +67,12 @@ rp:Addressed_InsightShape a sh:NodeShape;
 		sh:path rp:has_information_insight_business_case;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: add data_description to the insight_business_case."; 
+		sh:message "Completeness: add data_description to the insight_business_case."; ];
+	sh:property [
+		sh:path rp:contributes_to_vision;
+		sh:severity sh:Violation;
+		sh:minCount 1;
+		sh:message "Completeness: add contributes_to_vision to the insight." ;
 	].
 
 rp:Addressed_OpportunityShape a sh:NodeShape;
@@ -278,7 +283,7 @@ rp:RequirementShape a sh:NodeShape;
 	].
 
 rp:VisionShape a sh:NodeShape;
-	sh:targetClass rp:Vision;
+	sh:targetClass rp:Used_Vision;
 	sh:property [
 		sh:path rp:has_information_vision_statement;
 		sh:severity sh:Violation; 
@@ -377,8 +382,8 @@ rp:InformationShape a sh:NodeShape;
 		sh:message "Conflict: reconsider using the evidence."; 
 	].
 	
-rp:UsedEvidenceShape a sh:NodeShape;
-	sh:targetClass rp:Used_Evidence; 
+rp:EvidenceShape a sh:NodeShape;
+	sh:targetClass rp:Evidence; 
 	sh:property [
 		sh:path rp:agrees_with; 
 		sh:severity sh:Violation; 
