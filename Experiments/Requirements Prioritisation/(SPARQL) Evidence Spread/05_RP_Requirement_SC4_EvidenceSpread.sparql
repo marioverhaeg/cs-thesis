@@ -2,7 +2,7 @@ PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX rp: <http://www.marioverhaeg.nl/rp#>
-SELECT ?t ?mi (COUNT(DISTINCT ?t) as ?count) 
+SELECT ?t (COUNT(DISTINCT ?t) as ?count) 
 WHERE 
 {
 	{
@@ -11,7 +11,6 @@ WHERE
     		?e rdf:type ?t .
 	}
 	FILTER(?mi = rp:Requirement_SC4 || ?mi = rp:Opportunity_SC4 || ?mi = rp:Challenge_SC4 || ?mi = rp:Vision_SC4).
-	FILTER(?t != owl:Thing && ?t != rp:Evidence)
+	FILTER(?t != owl:Thing && ?t != rp:Evidence && ?t != rp:Used_Evidence && ?t != rp:Stakeholder_Evidence)
 }
-GROUP BY ?t ?mi
-ORDER BY ?mi
+GROUP BY ?t 

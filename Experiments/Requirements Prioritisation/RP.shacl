@@ -72,7 +72,7 @@ rp:Addressed_InsightShape a sh:NodeShape;
 		sh:path rp:contributes_to_vision;
 		sh:severity sh:Violation;
 		sh:minCount 1;
-		sh:message "Completeness: add contributes_to_vision to the insight." ;
+		sh:message "Structural: Insight does not contribute to a Vision." ;
 	].
 
 rp:Addressed_OpportunityShape a sh:NodeShape;
@@ -279,7 +279,7 @@ rp:RequirementShape a sh:NodeShape;
 		sh:path rp:addresses; 
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
-		sh:message "Completeness: ensure that the Requirement addresses an Insight."; 
+		sh:message "Structural: Requirement does not address an Insight."; 
 	].
 
 rp:VisionShape a sh:NodeShape;

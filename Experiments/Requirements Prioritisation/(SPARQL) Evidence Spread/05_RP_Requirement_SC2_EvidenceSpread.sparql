@@ -10,7 +10,7 @@ WHERE
     		?i rp:based_on_evidence ?e .
     		?e rdf:type ?t .
 	}
-	FILTER(?mi = rp:Requirement_SC1 || ?mi = rp:Opportunity_SC1 || ?mi = rp:Challenge_SC1 || ?mi = rp:Vision_SC1).
-	FILTER(?t != owl:Thing && ?t != rp:Evidence)
+	FILTER(?mi = rp:Requirement_SC2 || ?mi = rp:Opportunity_SC2 || ?mi = rp:Challenge_SC2 || ?mi = rp:Vision_SC2).
+	FILTER(?t != owl:Thing && ?t != rp:Evidence && ?t != rp:Used_Evidence && ?t != rp:Stakeholder_Evidence)
 }
 GROUP BY ?t
