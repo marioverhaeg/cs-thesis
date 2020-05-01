@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/administrator/ontologies/2020/4/untitled-ontology-7#"
+     xml:base="http://www.semanticweb.org/administrator/ontologies/2020/4/untitled-ontology-7"
+     xmlns:as="http://www.marioverhaeg.nl/as#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.marioverhaeg.nl/as">
+        <owl:versionIRI rdf:resource="http://www.marioverhaeg.nl/as/v1"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#agrees_with -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#agrees_with">
+        <owl:propertyDisjointWith rdf:resource="http://www.marioverhaeg.nl/as#disagrees_with"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#based_on_evidence -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#based_on_evidence">
+        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#evidence_used_for"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#based_on_information -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#based_on_information">
+        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#information_used_for"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#conflict_with_evidence -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#conflict_with_evidence">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#based_on_evidence"/>
+            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#disagrees_with"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#contributes_to -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#contributes_to">
+        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#defines"/>
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#defines -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#defines">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#scores"/>
+            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#in_context_of"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#disagrees_with -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#disagrees_with">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#evidence_used_for -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#evidence_used_for"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#has_information -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information">
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#in_context_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#in_context_of">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#information_used_for -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#information_used_for">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#scores -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#scores">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#shared_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#shared_by">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#solved_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#solved_by">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#solves"/>
+        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#solves -->
+
+    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#solves">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#data_description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.marioverhaeg.nl/as#data_description">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#data_value -->
+
+    <owl:DatatypeProperty rdf:about="http://www.marioverhaeg.nl/as#data_value">
+        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                <owl:withRestrictions rdf:parseType="Collection">
+                    <rdf:Description>
+                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</xsd:minInclusive>
+                    </rdf:Description>
+                    <rdf:Description>
+                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</xsd:maxInclusive>
+                    </rdf:Description>
+                </owl:withRestrictions>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal">
+        <owl:equivalentClass rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Complete_Information -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Complete_Information">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#data_description"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#data_value"/>
+                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Conflicting_Information -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Conflicting_Information">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#conflict_with_evidence"/>
+                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Contextual_Circumstance -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Contextual_Circumstance">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Evaluated_External_Evidence -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Evidence -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Evidence"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Goal -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Goal"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Information -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Information"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Reproducible_Information -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Reproducible_Information">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#based_on_evidence"/>
+                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Score -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Score"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Soft_Goal -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Solution -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Solution">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Stakeholder -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Evidence -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Evidence">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Experience -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Experience">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Value -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Value">
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Used_Evidence -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Evidence">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#evidence_used_for"/>
+                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Used_Information -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Information">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#information_used_for"/>
+                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13"/>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC11 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC11">
+        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC12 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC12">
+        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC13 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC13">
+        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC1">
+        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC11"/>
+        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC12"/>
+        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC1_BGSC13"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

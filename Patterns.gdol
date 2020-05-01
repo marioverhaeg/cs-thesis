@@ -1,0 +1,36 @@
+logic OWL
+ontology EBM =
+ Class: Evidence
+ Class: Stakeholder
+ Class: Stakeholder_Evidence SubClassOf: Evidence 
+ Class: Stakeholder_Experience SubClassOf: Stakeholder_Evidence 
+ Class: Stakeholder_Value SubClassOf: Stakeholder_Evidence 
+ Class: Contextual_Circumstance SubClassOf: Evidence 
+ Class: Evaluated_External_Evidence SubClassOf: Evidence 
+ DisjointClasses: Stakeholder_Evidence, Contextual_Circumstance, Evaluated_External_Evidence	
+ DisjointClasses: Stakeholder_Experience, Stakeholder_Value
+ 
+pattern Reproducibility_Basic
+ EBM 
+ Class: Stakeholder 
+ Class: Information 
+ ObjectProperty shared_by Domain: Stakeholder_Evidence Range: Stakeholder 
+ ObjectProperty based_on_evidence Domain: Information Range: Evidence
+ ObjectProperty based_on_information Domain: Information Range: Information Characteristics: Transitive
+ DisjointClasses: Information, Evidence
+
+pattern Consensus
+ Reproducibility_Basic
+ ObjectProperty: agrees_with Domain: Evidence Range: Evidence Characteristics: Symmetric
+ ObjectProperty: based_on_evidence SuperPropertyOf: based_on_evidence o agrees_with SubPropertyOf: based_on_evidence
+
+pattern Reproducibility_Context [Class: DecisionRelevantInformation] = 
+ [DecisionRelevantInformation] SubClassOf: rep:Information
+
+pattern Completeness [Class: c][Information: i][Range: r] =
+	DataProperty: i Domain: c Range: r
+
+pattern Conflict
+  Reproducibility_Basic
+  ObjectProperty: disagrees_with Domain: Evidence Range: Evidence Characteristics: Symmetric, Transitive
+  ObjectProperty: conflict_with_evidence SuperPropertyOf: based_on_evidence o disagrees_with SubPropertyOf: conflict_with_evidence
