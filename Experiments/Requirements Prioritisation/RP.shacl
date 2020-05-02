@@ -383,7 +383,7 @@ rp:InformationShape a sh:NodeShape;
 	].
 	
 rp:EvidenceShape a sh:NodeShape;
-	sh:targetClass rp:Evidence; 
+	sh:targetClass rp:Used_Evidence; 
 	sh:property [
 		sh:path rp:agrees_with; 
 		sh:severity sh:Violation; 

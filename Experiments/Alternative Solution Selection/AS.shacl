@@ -1,0 +1,160 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex:    <http://www.example.org/#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix as:    <http://www.marioverhaeg.nl/as#> .
+
+as:UsedSoftGoalShape a sh:NodeShape;
+	sh:targetClass as:Used_Soft_Goal; 
+	sh:property [
+		sh:path as:has_information_soft_goal_weighted_significance;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add weighted_significance to the Used_Soft_Goal."; ];
+	sh:property [
+		sh:path as:has_information_soft_goal_weighted_significance;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the weighted_significance."; ];
+	sh:property [
+		sh:path as:has_information_soft_goal_weighted_significance;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the weighted_significance."; 
+	].
+	
+as:UsedScoreShape a sh:NodeShape;
+	sh:targetClass as:Used_Score; 
+	sh:property [
+		sh:path as:has_information_score_contribution;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add weighted_significance to the Used_Score."; ];
+	sh:property [
+		sh:path as:has_information_score_contribution;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the score_contribution."; ];
+	sh:property [
+		sh:path as:has_information_score_contribution;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the score_contribution."; 
+	].
+	
+as:SystemShape a sh:NodeShape;
+	sh:targetClass as:System; 
+	sh:property [
+		sh:path as:has_information_system_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add system_objective to the System."; ];
+	sh:property [
+		sh:path as:has_information_system_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the system_objective."; ];
+	sh:property [
+		sh:path as:has_information_system_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the system_objective."; ];
+		
+	sh:property [
+		sh:path as:has_information_system_as_is;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add system_as_is to the System."; ];
+	sh:property [
+		sh:path as:has_information_system_as_is;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the system_as_is."; ];
+	sh:property [
+		sh:path as:has_information_system_as_is;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the system_as_is."; ];
+		
+	sh:property [
+		sh:path as:has_information_system_to_be;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add system_to_be to the System."; ];
+	sh:property [
+		sh:path as:has_information_system_to_be;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the system_to_be."; ];
+	sh:property [
+		sh:path as:has_information_system_to_be;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the system_to_be."; 
+	].
+	
+as:UsedGoal a sh:NodeShape;
+	sh:targetClass as:Used_Goal; 
+	sh:property [
+		sh:path as:has_information_goal_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add goal_objective to the Goal."; ];
+	sh:property [
+		sh:path as:has_information_goal_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to the goal_objective."; ];
+	sh:property [
+		sh:path as:has_information_goal_objective;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to the goal_objective."; 
+	].
+
+
+as:Stakeholder_EvidenceShape a sh:NodeShape;
+	sh:targetClass as:Stakeholder_Evidence; 
+	sh:property [
+		sh:path as:shared_by;
+		sh:minCount 1;
+		sh:severity sh:Violation; 
+		sh:message "Reproducibility: enter a stakeholder that serves as the source of this stakeholder evidence."; 
+	].
+
+as:InformationShape a sh:NodeShape;
+	sh:targetClass as:Information; 
+	sh:property [
+		sh:or (
+			[sh:path as:based_on_evidence; sh:minCount 1;]
+			[sh:path as:based_on_information; sh:minCount 1;]
+		);
+		sh:severity sh:Violation; 
+		sh:message "Reproducibility: increase the number of evidence sources for this information."; ];
+	sh:property [
+		sh:path as:data_value;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_value to Information."; ];
+	sh:property [
+		sh:path as:data_description;
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Completeness: add data_description to Information."; ];
+	sh:property [
+		sh:path as:conflict_with_evidence; 
+		sh:severity sh:Violation; 
+		sh:maxCount 0; 
+		sh:message "Conflict: reconsider using the evidence."; 
+	].
+	
+as:EvidenceShape a sh:NodeShape;
+	sh:targetClass as:Used_Evidence; 
+	sh:property [
+		sh:path as:agrees_with; 
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Consensus: ensure the evidence is in agreement with at least one additional evidence source."; 
+	].
