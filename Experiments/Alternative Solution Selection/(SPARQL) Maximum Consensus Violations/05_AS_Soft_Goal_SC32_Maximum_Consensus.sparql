@@ -1,0 +1,12 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX as: <http://www.marioverhaeg.nl/as#>
+SELECT DISTINCT ?t
+WHERE 
+{
+	?r as:has_information ?i .
+	?i as:based_on_evidence ?t .
+	?t rdf:type as:Used_Evidence .
+	FILTER (?r = as:Soft_Goal_SC32)
+}

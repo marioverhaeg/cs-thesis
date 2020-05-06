@@ -1,1050 +1,1956 @@
-<?xml version="1.0"?>
-<rdf:RDF xmlns="http://www.semanticweb.org/administrator/ontologies/2020/4/untitled-ontology-7#"
-     xml:base="http://www.semanticweb.org/administrator/ontologies/2020/4/untitled-ontology-7"
-     xmlns:as="http://www.marioverhaeg.nl/as#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
-    <owl:Ontology rdf:about="http://www.marioverhaeg.nl/as">
-        <owl:versionIRI rdf:resource="http://www.marioverhaeg.nl/as/v1"/>
-    </owl:Ontology>
-    
+@prefix : <http://www.marioverhaeg.nl/as#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.marioverhaeg.nl/as> .
 
+<http://www.marioverhaeg.nl/as> rdf:type owl:Ontology ;
+                                 owl:versionIRI <http://www.marioverhaeg.nl/as/v1> .
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Object Properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+#################################################################
+#    Object Properties
+#################################################################
 
-    
+###  http://www.marioverhaeg.nl/as#achieves
+:achieves rdf:type owl:ObjectProperty ;
+          owl:inverseOf :required_for ;
+          rdfs:domain :System ;
+          rdfs:range :Goal .
 
 
-    <!-- http://www.marioverhaeg.nl/as#achieves -->
+###  http://www.marioverhaeg.nl/as#agrees_with
+:agrees_with rdf:type owl:ObjectProperty ,
+                      owl:SymmetricProperty ;
+             owl:propertyDisjointWith :disagrees_with .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#achieves">
-        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#required_for"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#System"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#alternative_for
+:alternative_for rdf:type owl:ObjectProperty ,
+                          owl:SymmetricProperty ,
+                          owl:TransitiveProperty ;
+                 rdfs:domain :Behavioural_Goal ;
+                 rdfs:range :Behavioural_Goal .
 
-    <!-- http://www.marioverhaeg.nl/as#agrees_with -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#agrees_with">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-        <owl:propertyDisjointWith rdf:resource="http://www.marioverhaeg.nl/as#disagrees_with"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#based_on_evidence
+:based_on_evidence rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :evidence_used_for ;
+                   owl:propertyChainAxiom ( :based_on_evidence
+                                            :agrees_with
+                                          ) .
 
 
-    <!-- http://www.marioverhaeg.nl/as#based_on_evidence -->
+###  http://www.marioverhaeg.nl/as#based_on_information
+:based_on_information rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :information_used_for .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#based_on_evidence">
-        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#evidence_used_for"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#conflict_with_evidence
+:conflict_with_evidence rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Information ;
+                        rdfs:range :Evidence ;
+                        owl:propertyChainAxiom ( :based_on_evidence
+                                                 :disagrees_with
+                                               ) .
 
-    <!-- http://www.marioverhaeg.nl/as#based_on_information -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#based_on_information">
-        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#information_used_for"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#contributes_to
+:contributes_to rdf:type owl:ObjectProperty ;
+                owl:inverseOf :defines ;
+                rdf:type owl:TransitiveProperty ;
+                rdfs:domain :Behavioural_Goal ;
+                rdfs:range :Soft_Goal .
 
 
-    <!-- http://www.marioverhaeg.nl/as#conflict_with_evidence -->
+###  http://www.marioverhaeg.nl/as#defines
+:defines rdf:type owl:ObjectProperty ;
+         rdfs:domain :Soft_Goal ;
+         rdfs:range :Behavioural_Goal ;
+         owl:propertyChainAxiom ( :scores
+                                  :in_context_of
+                                ) .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#conflict_with_evidence">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#based_on_evidence"/>
-            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#disagrees_with"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#disagrees_with
+:disagrees_with rdf:type owl:ObjectProperty ,
+                         owl:SymmetricProperty ,
+                         owl:IrreflexiveProperty ;
+                rdfs:domain :Evidence ;
+                rdfs:range :Evidence .
 
-    <!-- http://www.marioverhaeg.nl/as#contributes_to -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#contributes_to">
-        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#defines"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#evidence_used_for
+:evidence_used_for rdf:type owl:ObjectProperty .
 
 
-    <!-- http://www.marioverhaeg.nl/as#defines -->
+###  http://www.marioverhaeg.nl/as#has_information
+:has_information rdf:type owl:ObjectProperty ;
+                 rdfs:range :Information .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#defines">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#scores"/>
-            <rdf:Description rdf:about="http://www.marioverhaeg.nl/as#in_context_of"/>
-        </owl:propertyChainAxiom>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#has_information_goal
+:has_information_goal rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :has_information .
 
-    <!-- http://www.marioverhaeg.nl/as#disagrees_with -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#disagrees_with">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#has_information_goal_objective
+:has_information_goal_objective rdf:type owl:ObjectProperty ;
+                                rdfs:subPropertyOf :has_information_goal ;
+                                rdfs:domain :Goal ;
+                                rdfs:range :Goal_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#evidence_used_for -->
+###  http://www.marioverhaeg.nl/as#has_information_score
+:has_information_score rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :has_information .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#evidence_used_for"/>
-    
 
+###  http://www.marioverhaeg.nl/as#has_information_score_contribution
+:has_information_score_contribution rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf :has_information_score ;
+                                    rdfs:domain :Score ;
+                                    rdfs:range :Score_Contribution .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information">
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#has_information_soft_goal_weighted_significance
+:has_information_soft_goal_weighted_significance rdf:type owl:ObjectProperty ;
+                                                 rdfs:subPropertyOf :has_information_goal ;
+                                                 rdfs:domain :Soft_Goal ;
+                                                 rdfs:range :Soft_Goal_Weighted_Significance .
 
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_goal -->
+###  http://www.marioverhaeg.nl/as#has_information_system
+:has_information_system rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :has_information .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_goal">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#has_information_system_as_is
+:has_information_system_as_is rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :has_information_system ;
+                              rdfs:domain :System ;
+                              rdfs:range :System_As_Is .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_goal_objective -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_goal_objective">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_goal"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Goal_Objective"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#has_information_system_objective
+:has_information_system_objective rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf :has_information_system ;
+                                  rdfs:domain :System ;
+                                  rdfs:range :System_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_score -->
+###  http://www.marioverhaeg.nl/as#has_information_system_to_be
+:has_information_system_to_be rdf:type owl:ObjectProperty ;
+                              rdfs:subPropertyOf :has_information_system ;
+                              rdfs:domain :System ;
+                              rdfs:range :System_To_Be .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_score">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#in_context_of
+:in_context_of rdf:type owl:ObjectProperty ;
+               rdfs:domain :Score ;
+               rdfs:range :Behavioural_Goal .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_score_contribution -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_score_contribution">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_score"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Score_Contribution"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#information_used_for
+:information_used_for rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Information ;
+                      rdfs:range :Information .
 
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_soft_goal_weighted_significance -->
+###  http://www.marioverhaeg.nl/as#required_for
+:required_for rdf:type owl:ObjectProperty .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_soft_goal_weighted_significance">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_goal"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_Weighted_Significance"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#scores
+:scores rdf:type owl:ObjectProperty ;
+        rdfs:domain :Soft_Goal ;
+        rdfs:range :Score .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_system -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_system">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#shared_by
+:shared_by rdf:type owl:ObjectProperty ;
+           rdfs:domain :Stakeholder_Evidence ;
+           rdfs:range :Stakeholder .
 
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_system_as_is -->
+###  http://www.marioverhaeg.nl/as#solved_by
+:solved_by rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           owl:inverseOf :solves ;
+           rdfs:range :Solution .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_system_as_is">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_system"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#System"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#System_As_Is"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#solves
+:solves rdf:type owl:ObjectProperty ;
+        rdfs:domain :Solution .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_system_objective -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_system_objective">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_system"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#System"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#System_Objective"/>
-    </owl:ObjectProperty>
-    
+#################################################################
+#    Data properties
+#################################################################
 
+###  http://www.marioverhaeg.nl/as#data_description
+:data_description rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdfs:domain :Information ;
+                  rdfs:range xsd:string .
 
-    <!-- http://www.marioverhaeg.nl/as#has_information_system_to_be -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#has_information_system_to_be">
-        <rdfs:subPropertyOf rdf:resource="http://www.marioverhaeg.nl/as#has_information_system"/>
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#System"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#System_To_Be"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#data_value
+:data_value rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Information ;
+            rdfs:range [ rdf:type rdfs:Datatype ;
+                         owl:onDatatype xsd:int ;
+                         owl:withRestrictions ( [ xsd:minInclusive "0"^^xsd:int
+                                                ]
+                                                [ xsd:maxInclusive "10"^^xsd:int
+                                                ]
+                                              )
+                       ] .
 
 
-    <!-- http://www.marioverhaeg.nl/as#in_context_of -->
+#################################################################
+#    Classes
+#################################################################
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#in_context_of">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal
+:Behavioural_Goal rdf:type owl:Class ;
+                  owl:equivalentClass :Solution ;
+                  rdfs:subClassOf :Goal .
 
 
-    <!-- http://www.marioverhaeg.nl/as#information_used_for -->
+###  http://www.marioverhaeg.nl/as#Complete_Information
+:Complete_Information rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :data_description ;
+                                                                   owl:someValuesFrom xsd:string
+                                                                 ]
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :data_value ;
+                                                                   owl:someValuesFrom xsd:int
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf :Information .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#information_used_for">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#Conflicting_Information
+:Conflicting_Information rdf:type owl:Class ;
+                         owl:equivalentClass [ rdf:type owl:Restriction ;
+                                               owl:onProperty :conflict_with_evidence ;
+                                               owl:someValuesFrom :Evidence
+                                             ] ;
+                         rdfs:subClassOf :Information .
 
-    <!-- http://www.marioverhaeg.nl/as#required_for -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#required_for"/>
-    
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance
+:Contextual_Circumstance rdf:type owl:Class ;
+                         rdfs:subClassOf :Evidence .
 
 
-    <!-- http://www.marioverhaeg.nl/as#scores -->
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence
+:Evaluated_External_Evidence rdf:type owl:Class ;
+                             rdfs:subClassOf :Evidence .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#scores">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#Evidence
+:Evidence rdf:type owl:Class .
 
-    <!-- http://www.marioverhaeg.nl/as#shared_by -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#shared_by">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#Goal
+:Goal rdf:type owl:Class .
 
 
-    <!-- http://www.marioverhaeg.nl/as#solved_by -->
+###  http://www.marioverhaeg.nl/as#Goal_Information
+:Goal_Information rdf:type owl:Class ;
+                  rdfs:subClassOf :Information .
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#solved_by">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-        <owl:inverseOf rdf:resource="http://www.marioverhaeg.nl/as#solves"/>
-        <rdfs:range rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
-    </owl:ObjectProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#Goal_Objective
+:Goal_Objective rdf:type owl:Class ;
+                rdfs:subClassOf :Goal_Information .
 
-    <!-- http://www.marioverhaeg.nl/as#solves -->
 
-    <owl:ObjectProperty rdf:about="http://www.marioverhaeg.nl/as#solves">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
-    </owl:ObjectProperty>
-    
+###  http://www.marioverhaeg.nl/as#Information
+:Information rdf:type owl:Class .
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+###  http://www.marioverhaeg.nl/as#Reproducible_Information
+:Reproducible_Information rdf:type owl:Class ;
+                          owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                owl:onProperty :based_on_evidence ;
+                                                owl:someValuesFrom :Evidence
+                                              ] ;
+                          rdfs:subClassOf :Information .
 
-    
 
+###  http://www.marioverhaeg.nl/as#Score
+:Score rdf:type owl:Class .
 
-    <!-- http://www.marioverhaeg.nl/as#data_description -->
 
-    <owl:DatatypeProperty rdf:about="http://www.marioverhaeg.nl/as#data_description">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
+###  http://www.marioverhaeg.nl/as#Score_Contribution
+:Score_Contribution rdf:type owl:Class ;
+                    rdfs:subClassOf :Score_Information .
 
 
-    <!-- http://www.marioverhaeg.nl/as#data_value -->
+###  http://www.marioverhaeg.nl/as#Score_Information
+:Score_Information rdf:type owl:Class ;
+                   rdfs:subClassOf :Information .
 
-    <owl:DatatypeProperty rdf:about="http://www.marioverhaeg.nl/as#data_value">
-        <rdfs:domain rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-        <rdfs:range>
-            <rdfs:Datatype>
-                <owl:onDatatype rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-                <owl:withRestrictions rdf:parseType="Collection">
-                    <rdf:Description>
-                        <xsd:minInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</xsd:minInclusive>
-                    </rdf:Description>
-                    <rdf:Description>
-                        <xsd:maxInclusive rdf:datatype="http://www.w3.org/2001/XMLSchema#int">10</xsd:maxInclusive>
-                    </rdf:Description>
-                </owl:withRestrictions>
-            </rdfs:Datatype>
-        </rdfs:range>
-    </owl:DatatypeProperty>
-    
 
+###  http://www.marioverhaeg.nl/as#Soft_Goal
+:Soft_Goal rdf:type owl:Class ;
+           rdfs:subClassOf :Goal .
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Classes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
 
-    
+###  http://www.marioverhaeg.nl/as#Soft_Goal_Weighted_Significance
+:Soft_Goal_Weighted_Significance rdf:type owl:Class ;
+                                 rdfs:subClassOf :Information .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal -->
+###  http://www.marioverhaeg.nl/as#Solution
+:Solution rdf:type owl:Class ;
+          rdfs:subClassOf :Goal .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal">
-        <owl:equivalentClass rdf:resource="http://www.marioverhaeg.nl/as#Solution"/>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Stakeholder
+:Stakeholder rdf:type owl:Class .
 
-    <!-- http://www.marioverhaeg.nl/as#Complete_Information -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Complete_Information">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#data_description"/>
-                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-                    </owl:Restriction>
-                    <owl:Restriction>
-                        <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#data_value"/>
-                        <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Stakeholder_Evidence
+:Stakeholder_Evidence rdf:type owl:Class ;
+                      rdfs:subClassOf :Evidence .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Conflicting_Information -->
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience
+:Stakeholder_Experience rdf:type owl:Class ;
+                        rdfs:subClassOf :Stakeholder_Evidence .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Conflicting_Information">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#conflict_with_evidence"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value
+:Stakeholder_Value rdf:type owl:Class ;
+                   rdfs:subClassOf :Stakeholder_Evidence .
 
-    <!-- http://www.marioverhaeg.nl/as#Contextual_Circumstance -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Contextual_Circumstance">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#System
+:System rdf:type owl:Class .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Evaluated_External_Evidence -->
+###  http://www.marioverhaeg.nl/as#System_As_Is
+:System_As_Is rdf:type owl:Class ;
+              rdfs:subClassOf :System_Information .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#System_Information
+:System_Information rdf:type owl:Class ;
+                    rdfs:subClassOf :Information .
 
-    <!-- http://www.marioverhaeg.nl/as#Evidence -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Evidence"/>
-    
+###  http://www.marioverhaeg.nl/as#System_Objective
+:System_Objective rdf:type owl:Class ;
+                  rdfs:subClassOf :System_Information .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Goal -->
+###  http://www.marioverhaeg.nl/as#System_To_Be
+:System_To_Be rdf:type owl:Class ;
+              rdfs:subClassOf :System_Information .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Goal"/>
-    
 
+###  http://www.marioverhaeg.nl/as#Used_Behavioural_Goal
+:Used_Behavioural_Goal rdf:type owl:Class ;
+                       owl:equivalentClass [ rdf:type owl:Restriction ;
+                                             owl:onProperty :contributes_to ;
+                                             owl:someValuesFrom :Soft_Goal
+                                           ] ;
+                       rdfs:subClassOf :Behavioural_Goal ,
+                                       :Used_Goal .
 
-    <!-- http://www.marioverhaeg.nl/as#Goal_Information -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Goal_Information">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Used_Evidence
+:Used_Evidence rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty :evidence_used_for ;
+                                     owl:someValuesFrom :Information
+                                   ] ;
+               rdfs:subClassOf :Evidence .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Goal_Objective -->
+###  http://www.marioverhaeg.nl/as#Used_Goal
+:Used_Goal rdf:type owl:Class ;
+           rdfs:subClassOf :Goal .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Goal_Objective">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal_Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Used_Information
+:Used_Information rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :information_used_for ;
+                                        owl:someValuesFrom :Information
+                                      ] ;
+                  rdfs:subClassOf :Information .
 
-    <!-- http://www.marioverhaeg.nl/as#Information -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Information"/>
-    
+###  http://www.marioverhaeg.nl/as#Used_Score
+:Used_Score rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty :in_context_of ;
+                                  owl:someValuesFrom :Behavioural_Goal
+                                ] ;
+            rdfs:subClassOf :Score .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Reproducible_Information -->
+###  http://www.marioverhaeg.nl/as#Used_Soft_Goal
+:Used_Soft_Goal rdf:type owl:Class ;
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :required_for ;
+                                      owl:someValuesFrom :System
+                                    ] ;
+                rdfs:subClassOf :Soft_Goal ,
+                                :Used_Goal .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Reproducible_Information">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#based_on_evidence"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+#################################################################
+#    Individuals
+#################################################################
 
-    <!-- http://www.marioverhaeg.nl/as#Score -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC00
+:Behavioural_Goal_SC00 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC00_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Score"/>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC00_Objective
+:Behavioural_Goal_SC00_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC0 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_Contribution -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Score_Contribution">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Score_Information"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11
+:Behavioural_Goal_SC11 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC12 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC11_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_Information -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11_Objective
+:Behavioural_Goal_SC11_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC1 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Score_Information">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12
+:Behavioural_Goal_SC12 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC12_Objective .
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12_Objective
+:Behavioural_Goal_SC12_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC1 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_Weighted_Significance -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13
+:Behavioural_Goal_SC13 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC12 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC13_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_Weighted_Significance">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13_Objective
+:Behavioural_Goal_SC13_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC1 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Solution -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Solution">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC21
+:Behavioural_Goal_SC21 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC22 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC21_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC21_Objective
+:Behavioural_Goal_SC21_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC2 ;
+                                 :data_description "description"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder"/>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC22
+:Behavioural_Goal_SC22 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC22_Objective .
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Evidence -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Evidence">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC22_Objective
+:Behavioural_Goal_SC22_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC2 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Experience -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC23
+:Behavioural_Goal_SC23 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC22 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC23_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Experience">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC23_Objective
+:Behavioural_Goal_SC23_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC2 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Value -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Value">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Evidence"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC31
+:Behavioural_Goal_SC31 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC32 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC31_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#System -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC31_Objective
+:Behavioural_Goal_SC31_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC3 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#System"/>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC32
+:Behavioural_Goal_SC32 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC32_Objective .
 
-    <!-- http://www.marioverhaeg.nl/as#System_As_Is -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#System_As_Is">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#System_Information"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC32_Objective
+:Behavioural_Goal_SC32_Objective rdf:type owl:NamedIndividual ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#System_Information -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC33
+:Behavioural_Goal_SC33 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC32 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC33_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#System_Information">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC33_Objective
+:Behavioural_Goal_SC33_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC3 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#System_Objective -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#System_Objective">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#System_Information"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC41
+:Behavioural_Goal_SC41 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC42 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC41_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#System_To_Be -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC41_Objective
+:Behavioural_Goal_SC41_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC4 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#System_To_Be">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#System_Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC42
+:Behavioural_Goal_SC42 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC42_Objective .
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Behavioural_Goal -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Behavioural_Goal">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#contributes_to"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Used_Goal"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC42_Objective
+:Behavioural_Goal_SC42_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC4 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Evidence -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC43
+:Behavioural_Goal_SC43 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC42 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC43_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Evidence">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#evidence_used_for"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Evidence"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC43_Objective
+:Behavioural_Goal_SC43_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC4 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Goal -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Goal">
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Goal"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC51
+:Behavioural_Goal_SC51 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC52 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC51_Objective .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Information -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC51_Objective
+:Behavioural_Goal_SC51_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC5 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Information">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#information_used_for"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Information"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC52
+:Behavioural_Goal_SC52 rdf:type owl:NamedIndividual ;
+                       :has_information_goal_objective :Behavioural_Goal_SC52_Objective .
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Score -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Score">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#in_context_of"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Score"/>
-    </owl:Class>
-    
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC52_Objective
+:Behavioural_Goal_SC52_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC5 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Used_Soft_Goal -->
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC53
+:Behavioural_Goal_SC53 rdf:type owl:NamedIndividual ;
+                       :alternative_for :Behavioural_Goal_SC52 ;
+                       :has_information_goal_objective :Behavioural_Goal_SC53_Objective .
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/as#Used_Soft_Goal">
-        <owl:equivalentClass>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/as#required_for"/>
-                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/as#System"/>
-            </owl:Restriction>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal"/>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/as#Used_Goal"/>
-    </owl:Class>
-    
 
+###  http://www.marioverhaeg.nl/as#Behavioural_Goal_SC53_Objective
+:Behavioural_Goal_SC53_Objective rdf:type owl:NamedIndividual ;
+                                 :based_on_evidence :Stakeholder_Experience_SC5 ;
+                                 :data_description "objective"^^xsd:string ;
+                                 :data_value "0"^^xsd:int .
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
 
-    
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC0
+:Contextual_Circumstance_SC0 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance ;
+                             :agrees_with :Stakeholder_Experience_SC0 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11 -->
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1
+:Contextual_Circumstance_SC1 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11_Objective"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC2
+:Contextual_Circumstance_SC2 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance .
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11_Objective -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC3
+:Contextual_Circumstance_SC3 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12 -->
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC4
+:Contextual_Circumstance_SC4 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance ;
+                             :agrees_with :Stakeholder_Value_SC4 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12_Objective"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC5
+:Contextual_Circumstance_SC5 rdf:type owl:NamedIndividual ,
+                                      :Contextual_Circumstance .
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12_Objective -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC0
+:Evaluated_External_Evidence_SC0 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13 -->
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1
+:Evaluated_External_Evidence_SC1 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence ;
+                                 :agrees_with :Contextual_Circumstance_SC1 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13_Objective"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC2
+:Evaluated_External_Evidence_SC2 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence ;
+                                 :agrees_with :Contextual_Circumstance_SC2 .
 
-    <!-- http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13_Objective -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC3
+:Evaluated_External_Evidence_SC3 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence ;
+                                 :agrees_with :Contextual_Circumstance_SC3 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1 -->
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC4
+:Evaluated_External_Evidence_SC4 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence ;
+                                 :agrees_with :Stakeholder_Experience_SC4 ;
+                                 :disagrees_with :Contextual_Circumstance_SC4 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1">
-        <rdf:type rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance"/>
-        <as:agrees_with rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC5
+:Evaluated_External_Evidence_SC5 rdf:type owl:NamedIndividual ,
+                                          :Evaluated_External_Evidence .
 
-    <!-- http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1">
-        <rdf:type rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence"/>
-        <as:agrees_with rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1"/>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11
+:Score_SGSC11_BGSC11 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC11_BGSC11_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC11 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11_Contribution
+:Score_SGSC11_BGSC11_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12
+:Score_SGSC11_BGSC12 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC11_BGSC12_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC12 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12_Contribution
+:Score_SGSC11_BGSC12_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13
+:Score_SGSC11_BGSC13 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC11_BGSC13_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC13 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13_Contribution
+:Score_SGSC11_BGSC13_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11
+:Score_SGSC12_BGSC11 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC12_BGSC11_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC11 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11_Contribution
+:Score_SGSC12_BGSC11_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12
+:Score_SGSC12_BGSC12 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC12_BGSC12_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC12 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12_Contribution
+:Score_SGSC12_BGSC12_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13
+:Score_SGSC12_BGSC13 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC12_BGSC13_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC13 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13_Contribution
+:Score_SGSC12_BGSC13_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11
+:Score_SGSC13_BGSC11 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC13_BGSC11_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC11 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11_Contribution
+:Score_SGSC13_BGSC11_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12
+:Score_SGSC13_BGSC12 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC13_BGSC12_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC12 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12_Contribution
+:Score_SGSC13_BGSC12_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13
+:Score_SGSC13_BGSC13 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC13_BGSC13_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC13 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13_Contribution
+:Score_SGSC13_BGSC13_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC1 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC21
+:Score_SGSC21_BGSC21 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC21_BGSC21_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC21 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC21_Contribution
+:Score_SGSC21_BGSC21_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC11"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC22
+:Score_SGSC21_BGSC22 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC21_BGSC22_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC22 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC22_Contribution
+:Score_SGSC21_BGSC22_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC23
+:Score_SGSC21_BGSC23 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC21_BGSC23_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC23 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC12"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC21_BGSC23_Contribution
+:Score_SGSC21_BGSC23_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC21
+:Score_SGSC22_BGSC21 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC22_BGSC21_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC21 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC21_Contribution
+:Score_SGSC22_BGSC21_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "description"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13">
-        <as:has_information_score_contribution rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13_Contribution"/>
-        <as:in_context_of rdf:resource="http://www.marioverhaeg.nl/as#Behavioural_Goal_SC13"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC22
+:Score_SGSC22_BGSC22 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC22_BGSC22_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC22 .
 
-    <!-- http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13_Contribution -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13_Contribution">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Evaluated_External_Evidence_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">contribution</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC22_Contribution
+:Score_SGSC22_BGSC22_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC11 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC23
+:Score_SGSC22_BGSC23 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC22_BGSC23_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC23 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC11">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Objective"/>
-        <as:has_information_soft_goal_weighted_significance rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Weigthed_Significance"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC11"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC12"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC11_BGSC13"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC22_BGSC23_Contribution
+:Score_SGSC22_BGSC23_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Objective -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC21
+:Score_SGSC23_BGSC21 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC23_BGSC21_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC21 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Weigthed_Significance -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC21_Contribution
+:Score_SGSC23_BGSC21_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Weigthed_Significance">
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_As_Is"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_To_Be"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">justification</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</as:data_value>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC22
+:Score_SGSC23_BGSC22 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC23_BGSC22_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC22 .
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC12 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC12">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Objective"/>
-        <as:has_information_soft_goal_weighted_significance rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Weigthed_Significance"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC11"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC12"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC12_BGSC13"/>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC22_Contribution
+:Score_SGSC23_BGSC22_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Objective -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC23
+:Score_SGSC23_BGSC23 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC23_BGSC23_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC23 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC23_BGSC23_Contribution
+:Score_SGSC23_BGSC23_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC2 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Weigthed_Significance -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Weigthed_Significance">
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_As_Is"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_To_Be"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">justification</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC31
+:Score_SGSC31_BGSC31 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC31_BGSC31_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC31 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC13 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC31_Contribution
+:Score_SGSC31_BGSC31_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC13">
-        <as:has_information_goal_objective rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Objective"/>
-        <as:has_information_soft_goal_weighted_significance rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Weigthed_Significance"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC11"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC12"/>
-        <as:scores rdf:resource="http://www.marioverhaeg.nl/as#Score_SGSC13_BGSC13"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC32
+:Score_SGSC31_BGSC32 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC31_BGSC32_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC32 .
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Objective -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC32_Contribution
+:Score_SGSC31_BGSC32_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Weigthed_Significance -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC33
+:Score_SGSC31_BGSC33 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC31_BGSC33_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC33 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Weigthed_Significance">
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_As_Is"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_Objective"/>
-        <as:based_on_information rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_To_Be"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">justification</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">5</as:data_value>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC31_BGSC33_Contribution
+:Score_SGSC31_BGSC33_Contribution rdf:type owl:NamedIndividual ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1">
-        <rdf:type rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Experience"/>
-        <as:agrees_with rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1"/>
-        <as:shared_by rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_SC1"/>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC31
+:Score_SGSC32_BGSC31 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC32_BGSC31_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC31 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_SC1 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC31_Contribution
+:Score_SGSC32_BGSC31_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_SC1"/>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC32
+:Score_SGSC32_BGSC32 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC32_BGSC32_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC32 .
 
-    <!-- http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1">
-        <rdf:type rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_Value"/>
-        <as:shared_by rdf:resource="http://www.marioverhaeg.nl/as#Stakeholder_SC1"/>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC32_Contribution
+:Score_SGSC32_BGSC32_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
-    <!-- http://www.marioverhaeg.nl/as#System_SC1 -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC33
+:Score_SGSC32_BGSC33 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC32_BGSC33_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC33 .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#System_SC1">
-        <as:achieves rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC11"/>
-        <as:achieves rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC12"/>
-        <as:achieves rdf:resource="http://www.marioverhaeg.nl/as#Soft_Goal_SC13"/>
-        <as:has_information_system_as_is rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_As_Is"/>
-        <as:has_information_system_objective rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_Objective"/>
-        <as:has_information_system_to_be rdf:resource="http://www.marioverhaeg.nl/as#System_SC1_To_Be"/>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC32_BGSC33_Contribution
+:Score_SGSC32_BGSC33_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <!-- http://www.marioverhaeg.nl/as#System_SC1_As_Is -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#System_SC1_As_Is">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">system as is</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC31
+:Score_SGSC33_BGSC31 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC33_BGSC31_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC31 .
 
 
-    <!-- http://www.marioverhaeg.nl/as#System_SC1_Objective -->
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC31_Contribution
+:Score_SGSC33_BGSC31_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#System_SC1_Objective">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">system objective</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-    
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC32
+:Score_SGSC33_BGSC32 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC33_BGSC32_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC32 .
 
-    <!-- http://www.marioverhaeg.nl/as#System_SC1_To_Be -->
 
-    <owl:NamedIndividual rdf:about="http://www.marioverhaeg.nl/as#System_SC1_To_Be">
-        <as:based_on_evidence rdf:resource="http://www.marioverhaeg.nl/as#Contextual_Circumstance_SC1"/>
-        <as:data_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">system to be</as:data_description>
-        <as:data_value rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</as:data_value>
-    </owl:NamedIndividual>
-</rdf:RDF>
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC32_Contribution
+:Score_SGSC33_BGSC32_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
 
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC33
+:Score_SGSC33_BGSC33 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC33_BGSC33_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC33 .
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 
+###  http://www.marioverhaeg.nl/as#Score_SGSC33_BGSC33_Contribution
+:Score_SGSC33_BGSC33_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC3 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC41
+:Score_SGSC41_BGSC41 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC41_BGSC41_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC41 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC41_Contribution
+:Score_SGSC41_BGSC41_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC42
+:Score_SGSC41_BGSC42 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC41_BGSC42_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC42 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC42_Contribution
+:Score_SGSC41_BGSC42_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC43
+:Score_SGSC41_BGSC43 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC41_BGSC43_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC41_BGSC43_Contribution
+:Score_SGSC41_BGSC43_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC41
+:Score_SGSC42_BGSC41 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC42_BGSC41_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC41 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC41_Contribution
+:Score_SGSC42_BGSC41_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC42
+:Score_SGSC42_BGSC42 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC42_BGSC42_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC42 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC42_Contribution
+:Score_SGSC42_BGSC42_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC43
+:Score_SGSC42_BGSC43 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC42_BGSC43_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC42_BGSC43_Contribution
+:Score_SGSC42_BGSC43_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC41
+:Score_SGSC43_BGSC41 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC43_BGSC41_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC41 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC41_Contribution
+:Score_SGSC43_BGSC41_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC42
+:Score_SGSC43_BGSC42 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC43_BGSC42_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC42 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC42_Contribution
+:Score_SGSC43_BGSC42_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC43
+:Score_SGSC43_BGSC43 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC43_BGSC43_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC43_BGSC43_Contribution
+:Score_SGSC43_BGSC43_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC4 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC51
+:Score_SGSC51_BGSC51 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC51_BGSC51_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC51 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC51_Contribution
+:Score_SGSC51_BGSC51_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC52
+:Score_SGSC51_BGSC52 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC51_BGSC52_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC52 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC52_Contribution
+:Score_SGSC51_BGSC52_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC53
+:Score_SGSC51_BGSC53 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC51_BGSC53_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC51_BGSC53_Contribution
+:Score_SGSC51_BGSC53_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC51
+:Score_SGSC52_BGSC51 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC52_BGSC51_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC51 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC51_Contribution
+:Score_SGSC52_BGSC51_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC52
+:Score_SGSC52_BGSC52 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC52_BGSC52_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC52 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC52_Contribution
+:Score_SGSC52_BGSC52_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC53
+:Score_SGSC52_BGSC53 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC52_BGSC53_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC52_BGSC53_Contribution
+:Score_SGSC52_BGSC53_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC51
+:Score_SGSC53_BGSC51 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC53_BGSC51_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC51 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC51_Contribution
+:Score_SGSC53_BGSC51_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC52
+:Score_SGSC53_BGSC52 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC53_BGSC52_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC52 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC52_Contribution
+:Score_SGSC53_BGSC52_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC53
+:Score_SGSC53_BGSC53 rdf:type owl:NamedIndividual ;
+                     :has_information_score_contribution :Score_SGSC53_BGSC53_Contribution ;
+                     :in_context_of :Behavioural_Goal_SC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Score_SGSC53_BGSC53_Contribution
+:Score_SGSC53_BGSC53_Contribution rdf:type owl:NamedIndividual ;
+                                  :based_on_evidence :Evaluated_External_Evidence_SC5 ;
+                                  :data_description "contribution"^^xsd:string ;
+                                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC01
+:Soft_Goal_SC01 rdf:type owl:NamedIndividual ;
+                :defines :Behavioural_Goal_SC00 ;
+                :has_information_goal_objective :Soft_Goal_SC01_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC01_Weighted_Significance .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC01_Objective
+:Soft_Goal_SC01_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC0 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC01_Weighted_Significance
+:Soft_Goal_SC01_Weighted_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_evidence :Contextual_Circumstance_SC0 ;
+                                      :data_description "weighted significance"^^xsd:string ;
+                                      :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC02
+:Soft_Goal_SC02 rdf:type owl:NamedIndividual ;
+                :defines :Behavioural_Goal_SC00 ;
+                :has_information_goal_objective :Soft_Goal_SC02_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC02_Weighted_Significance .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC02_Objective
+:Soft_Goal_SC02_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC0 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC02_Weighted_Significance
+:Soft_Goal_SC02_Weighted_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_evidence :Contextual_Circumstance_SC0 ;
+                                      :data_description "weighted significance"^^xsd:string ;
+                                      :data_value "4"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC11
+:Soft_Goal_SC11 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC11_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC11_Weigthed_Significance ;
+                :scores :Score_SGSC11_BGSC11 ,
+                        :Score_SGSC11_BGSC12 ,
+                        :Score_SGSC11_BGSC13 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Objective
+:Soft_Goal_SC11_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Stakeholder_Value_SC1 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC11_Weigthed_Significance
+:Soft_Goal_SC11_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC11_Objective ,
+                                                            :System_SC1_As_Is ,
+                                                            :System_SC1_Objective ,
+                                                            :System_SC1_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC12
+:Soft_Goal_SC12 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC12_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC12_Weigthed_Significance ;
+                :scores :Score_SGSC12_BGSC11 ,
+                        :Score_SGSC12_BGSC12 ,
+                        :Score_SGSC12_BGSC13 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Objective
+:Soft_Goal_SC12_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC1 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC12_Weigthed_Significance
+:Soft_Goal_SC12_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC12_Objective ,
+                                                            :System_SC1_As_Is ,
+                                                            :System_SC1_Objective ,
+                                                            :System_SC1_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "2"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC13
+:Soft_Goal_SC13 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC13_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC13_Weigthed_Significance ;
+                :scores :Score_SGSC13_BGSC11 ,
+                        :Score_SGSC13_BGSC12 ,
+                        :Score_SGSC13_BGSC13 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Objective
+:Soft_Goal_SC13_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC1 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC13_Weigthed_Significance
+:Soft_Goal_SC13_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC13_Objective ,
+                                                            :System_SC1_As_Is ,
+                                                            :System_SC1_Objective ,
+                                                            :System_SC1_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC21
+:Soft_Goal_SC21 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC21_Objective ;
+                :scores :Score_SGSC21_BGSC21 ,
+                        :Score_SGSC21_BGSC22 ,
+                        :Score_SGSC21_BGSC23 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC21_Objective
+:Soft_Goal_SC21_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Stakeholder_Value_SC2 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC22
+:Soft_Goal_SC22 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC22_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC22_Weigthed_Significance ;
+                :scores :Score_SGSC22_BGSC21 ,
+                        :Score_SGSC22_BGSC22 ,
+                        :Score_SGSC22_BGSC23 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC22_Objective
+:Soft_Goal_SC22_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC2 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC22_Weigthed_Significance
+:Soft_Goal_SC22_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC22_Objective ,
+                                                            :System_SC2_Objective ,
+                                                            :System_SC2_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC23
+:Soft_Goal_SC23 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC23_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC23_Weigthed_Significance ;
+                :scores :Score_SGSC23_BGSC21 ,
+                        :Score_SGSC23_BGSC22 ,
+                        :Score_SGSC23_BGSC23 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC23_Objective
+:Soft_Goal_SC23_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC2 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC23_Weigthed_Significance
+:Soft_Goal_SC23_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC23_Objective ,
+                                                            :System_SC2_Objective ,
+                                                            :System_SC2_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC31
+:Soft_Goal_SC31 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC31_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC31_Weigthed_Significance ;
+                :scores :Score_SGSC31_BGSC31 ,
+                        :Score_SGSC31_BGSC32 ,
+                        :Score_SGSC31_BGSC33 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC31_Objective
+:Soft_Goal_SC31_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Stakeholder_Value_SC3 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC31_Weigthed_Significance
+:Soft_Goal_SC31_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC31_Objective ,
+                                                            :System_SC3_As_Is ,
+                                                            :System_SC3_Objective ,
+                                                            :System_SC3_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC32
+:Soft_Goal_SC32 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC32_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC32_Weigthed_Significance ;
+                :scores :Score_SGSC32_BGSC31 ,
+                        :Score_SGSC32_BGSC32 ,
+                        :Score_SGSC32_BGSC33 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC32_Objective
+:Soft_Goal_SC32_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC3 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC32_Weigthed_Significance
+:Soft_Goal_SC32_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "2"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC33
+:Soft_Goal_SC33 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC33_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC33_Weigthed_Significance ;
+                :scores :Score_SGSC33_BGSC31 ,
+                        :Score_SGSC33_BGSC32 ,
+                        :Score_SGSC33_BGSC33 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC33_Objective
+:Soft_Goal_SC33_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC3 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC33_Weigthed_Significance
+:Soft_Goal_SC33_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC33_Objective ,
+                                                            :System_SC3_As_Is ,
+                                                            :System_SC3_Objective ,
+                                                            :System_SC3_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC41
+:Soft_Goal_SC41 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC41_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC41_Weigthed_Significance ;
+                :scores :Score_SGSC41_BGSC41 ,
+                        :Score_SGSC41_BGSC42 ,
+                        :Score_SGSC41_BGSC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC41_Objective
+:Soft_Goal_SC41_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Stakeholder_Value_SC4 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC41_Weigthed_Significance
+:Soft_Goal_SC41_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC41_Objective ,
+                                                            :System_SC4_As_Is ,
+                                                            :System_SC4_Objective ,
+                                                            :System_SC4_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC42
+:Soft_Goal_SC42 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC42_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC42_Weigthed_Significance ;
+                :scores :Score_SGSC42_BGSC41 ,
+                        :Score_SGSC42_BGSC42 ,
+                        :Score_SGSC42_BGSC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC42_Objective
+:Soft_Goal_SC42_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC4 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC42_Weigthed_Significance
+:Soft_Goal_SC42_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC42_Objective ,
+                                                            :System_SC4_As_Is ,
+                                                            :System_SC4_Objective ,
+                                                            :System_SC4_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "2"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC43
+:Soft_Goal_SC43 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC43_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC43_Weigthed_Significance ;
+                :scores :Score_SGSC43_BGSC41 ,
+                        :Score_SGSC43_BGSC42 ,
+                        :Score_SGSC43_BGSC43 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC43_Objective
+:Soft_Goal_SC43_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC4 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC43_Weigthed_Significance
+:Soft_Goal_SC43_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC43_Objective ,
+                                                            :System_SC4_As_Is ,
+                                                            :System_SC4_Objective ,
+                                                            :System_SC4_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC51
+:Soft_Goal_SC51 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC51_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC51_Weigthed_Significance ;
+                :scores :Score_SGSC51_BGSC51 ,
+                        :Score_SGSC51_BGSC52 ,
+                        :Score_SGSC51_BGSC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC51_Objective
+:Soft_Goal_SC51_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Stakeholder_Value_SC5 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC51_Weigthed_Significance
+:Soft_Goal_SC51_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC51_Objective ,
+                                                            :System_SC5_As_Is ,
+                                                            :System_SC5_Objective ,
+                                                            :System_SC5_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "3"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC52
+:Soft_Goal_SC52 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC52_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC52_Weigthed_Significance ;
+                :scores :Score_SGSC52_BGSC51 ,
+                        :Score_SGSC52_BGSC52 ,
+                        :Score_SGSC52_BGSC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC52_Objective
+:Soft_Goal_SC52_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC5 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC52_Weigthed_Significance
+:Soft_Goal_SC52_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC52_Objective ,
+                                                            :System_SC5_As_Is ,
+                                                            :System_SC5_Objective ,
+                                                            :System_SC5_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "2"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC53
+:Soft_Goal_SC53 rdf:type owl:NamedIndividual ;
+                :has_information_goal_objective :Soft_Goal_SC53_Objective ;
+                :has_information_soft_goal_weighted_significance :Soft_Goal_SC53_Weigthed_Significance ;
+                :scores :Score_SGSC53_BGSC51 ,
+                        :Score_SGSC53_BGSC52 ,
+                        :Score_SGSC53_BGSC53 .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC53_Objective
+:Soft_Goal_SC53_Objective rdf:type owl:NamedIndividual ;
+                          :based_on_evidence :Contextual_Circumstance_SC5 ;
+                          :data_description "objective"^^xsd:string ;
+                          :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Soft_Goal_SC53_Weigthed_Significance
+:Soft_Goal_SC53_Weigthed_Significance rdf:type owl:NamedIndividual ;
+                                      :based_on_information :Soft_Goal_SC53_Objective ,
+                                                            :System_SC5_As_Is ,
+                                                            :System_SC5_Objective ,
+                                                            :System_SC5_To_Be ;
+                                      :data_description "justification"^^xsd:string ;
+                                      :data_value "5"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC0
+:Stakeholder_Experience_SC0 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :shared_by :Stakholder_SC0 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC1
+:Stakeholder_Experience_SC1 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :agrees_with :Stakeholder_Value_SC1 ;
+                            :shared_by :Stakeholder_SC1 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC2
+:Stakeholder_Experience_SC2 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :agrees_with :Stakeholder_Value_SC2 ;
+                            :shared_by :Stakeholder_SC2 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC3
+:Stakeholder_Experience_SC3 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :agrees_with :Stakeholder_Value_SC3 ;
+                            :shared_by :Stakeholder_SC3 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC4
+:Stakeholder_Experience_SC4 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :disagrees_with :Stakeholder_Value_SC4 ;
+                            :shared_by :Stakeholder_SC4 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Experience_SC5
+:Stakeholder_Experience_SC5 rdf:type owl:NamedIndividual ,
+                                     :Stakeholder_Experience ;
+                            :shared_by :Stakeholder_SC5 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_SC1
+:Stakeholder_SC1 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_SC2
+:Stakeholder_SC2 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_SC3
+:Stakeholder_SC3 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_SC4
+:Stakeholder_SC4 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_SC5
+:Stakeholder_SC5 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC0
+:Stakeholder_Value_SC0 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakholder_SC0 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC1
+:Stakeholder_Value_SC1 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakeholder_SC1 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC2
+:Stakeholder_Value_SC2 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakeholder_SC2 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC3
+:Stakeholder_Value_SC3 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakeholder_SC3 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC4
+:Stakeholder_Value_SC4 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :shared_by :Stakeholder_SC4 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakeholder_Value_SC5
+:Stakeholder_Value_SC5 rdf:type owl:NamedIndividual ,
+                                :Stakeholder_Value ;
+                       :agrees_with :Stakeholder_Experience_SC5 ;
+                       :shared_by :Stakeholder_SC5 .
+
+
+###  http://www.marioverhaeg.nl/as#Stakholder_SC0
+:Stakholder_SC0 rdf:type owl:NamedIndividual .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC0
+:System_SC0 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC01 ,
+                      :Soft_Goal_SC02 ;
+            :has_information_system_as_is :System_SC0_As_Is ;
+            :has_information_system_objective :System_SC0_Objective ;
+            :has_information_system_to_be :System_SC0_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC0_As_Is
+:System_SC0_As_Is rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC0 ;
+                  :data_description "system as is"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC0_Objective
+:System_SC0_Objective rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Contextual_Circumstance_SC0 ;
+                      :data_description "objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC0_To_Be
+:System_SC0_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC0 ;
+                  :data_description "system to be"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC1
+:System_SC1 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC11 ,
+                      :Soft_Goal_SC12 ,
+                      :Soft_Goal_SC13 ;
+            :has_information_system_as_is :System_SC1_As_Is ;
+            :has_information_system_objective :System_SC1_Objective ;
+            :has_information_system_to_be :System_SC1_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC1_As_Is
+:System_SC1_As_Is rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC1 ;
+                  :data_description "system as is"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC1_Objective
+:System_SC1_Objective rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Contextual_Circumstance_SC1 ;
+                      :data_description "system objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC1_To_Be
+:System_SC1_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC1 ;
+                  :data_description "system to be"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC2
+:System_SC2 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC21 ,
+                      :Soft_Goal_SC22 ,
+                      :Soft_Goal_SC23 ;
+            :has_information_system_objective :System_SC2_Objective ;
+            :has_information_system_to_be :System_SC2_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC2_Objective
+:System_SC2_Objective rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Contextual_Circumstance_SC2 ;
+                      :data_description "system objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC2_To_Be
+:System_SC2_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC2 .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC3
+:System_SC3 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC31 ,
+                      :Soft_Goal_SC32 ,
+                      :Soft_Goal_SC33 ;
+            :has_information_system_as_is :System_SC3_As_Is ;
+            :has_information_system_objective :System_SC3_Objective ;
+            :has_information_system_to_be :System_SC3_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC3_As_Is
+:System_SC3_As_Is rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC3 ;
+                  :data_description "system as is"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC3_Objective
+:System_SC3_Objective rdf:type owl:NamedIndividual ;
+                      :data_description "system objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC3_To_Be
+:System_SC3_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC3 ;
+                  :data_description "system to be"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC4
+:System_SC4 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC41 ,
+                      :Soft_Goal_SC42 ,
+                      :Soft_Goal_SC43 ;
+            :has_information_system_as_is :System_SC4_As_Is ;
+            :has_information_system_objective :System_SC4_Objective ;
+            :has_information_system_to_be :System_SC4_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC4_As_Is
+:System_SC4_As_Is rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC4 ;
+                  :data_description "system as is"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC4_Objective
+:System_SC4_Objective rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Contextual_Circumstance_SC4 ;
+                      :data_description "system objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC4_To_Be
+:System_SC4_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC4 ;
+                  :data_description "system to be"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC5
+:System_SC5 rdf:type owl:NamedIndividual ;
+            :achieves :Soft_Goal_SC51 ,
+                      :Soft_Goal_SC52 ,
+                      :Soft_Goal_SC53 ;
+            :has_information_system_as_is :System_SC5_As_Is ;
+            :has_information_system_objective :System_SC5_Objective ;
+            :has_information_system_to_be :System_SC5_To_Be .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC5_As_Is
+:System_SC5_As_Is rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC5 ;
+                  :data_description "system as is"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC5_Objective
+:System_SC5_Objective rdf:type owl:NamedIndividual ;
+                      :based_on_evidence :Contextual_Circumstance_SC5 ;
+                      :data_description "system objective"^^xsd:string ;
+                      :data_value "0"^^xsd:int .
+
+
+###  http://www.marioverhaeg.nl/as#System_SC5_To_Be
+:System_SC5_To_Be rdf:type owl:NamedIndividual ;
+                  :based_on_evidence :Contextual_Circumstance_SC5 ;
+                  :data_description "system to be"^^xsd:string ;
+                  :data_value "0"^^xsd:int .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

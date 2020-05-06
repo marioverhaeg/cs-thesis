@@ -166,30 +166,3 @@ as:BehaviouralGoalShape a sh:NodeShape;
 		sh:severity sh:Violation; 
 		sh:minCount 1; 
 		sh:message "Structural: add at least one alternative for this behavioural goal."; ].
-		
-as:SoftGoalWeightedSignificanceShape
-	sh:targetClass as:System ;
-	sh:sparql [
-		sh:message "Structural: ensure the weighted significance of this soft_goal equals to 10." ;
-		sh:prefixes _:prefixes ;
-		sh:select """
-			SELECT $this (SUM(?dv) as ?totalws)
-			WHERE
-			{
-					?sg as:has_information_soft_goal_weighted_significance ?ws .
-					?ws as:data_value ?dv .
-					$this as:achieves ?sg .
-			}
-			GROUP BY $this
-			HAVING (SUM(?dv) != 10)
-		""" ;
-	] .
-
-_:prefixes
-	sh:declare
-		[
-			sh:prefix "as" ;
-			sh:namespace "http://www.marioverhaeg.nl/as#"^^xsd:anyURI ;
-		]
-	;
-.

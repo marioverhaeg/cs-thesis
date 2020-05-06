@@ -1,0 +1,35 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ex:    <http://www.example.org/#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix as:    <http://www.marioverhaeg.nl/as#> .
+
+as:TestShape
+	sh:targetClass as:System ;
+	sh:sparql [
+		sh:message "Test SHAPE." ;
+		sh:prefixes _:prefixes ;
+		sh:select """
+			SELECT $this (SUM(?dv) as ?totalws)
+			WHERE
+			{
+					?sg as:has_information_soft_goal_weighted_significance ?ws .
+					?ws as:data_value ?dv .
+					$this as:achieves ?sg .
+			}
+			GROUP BY $this
+			HAVING (SUM(?dv) != 10)
+		""" ;
+	] .
+
+_:prefixes
+	sh:declare
+		[
+			sh:prefix "as" ;
+			sh:namespace "http://www.marioverhaeg.nl/as#"^^xsd:anyURI ;
+		]
+	;
+.
+

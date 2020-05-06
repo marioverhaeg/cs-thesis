@@ -1,0 +1,31 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX as: <http://www.marioverhaeg.nl/as#>
+SELECT ?t (COUNT(DISTINCT ?t) as ?count) 
+WHERE 
+{
+	{
+		?mi as:has_information ?i .
+    		?i as:based_on_evidence ?e .
+    		?e rdf:type ?t .
+	}
+	FILTER( ?mi = as:System_SC3 ||
+			?mi = as:Soft_Goal_SC31  ||
+			?mi = as:Soft_Goal_SC32  ||
+			?mi = as:Soft_Goal_SC33 ||
+			?mi = as:Score_SGSC31_BGSC31 ||
+			?mi = as:Score_SGSC32_BGSC31  ||
+			?mi = as:Score_SGSC33_BGSC31  ||
+			?mi = as:Score_SGSC31_BGSC32 ||
+			?mi = as:Score_SGSC32_BGSC32 ||
+			?mi = as:Score_SGSC33_BGSC32 ||
+			?mi = as:Score_SGSC31_BGSC33 ||
+			?mi = as:Score_SGSC32_BGSC33 ||
+			?mi = as:Score_SGSC33_BGSC33 ||
+			?mi = as:Behavioural_Goal_SC31 ||
+			?mi = as:Behavioural_Goal_SC32 ||
+			?mi = as:Behavioural_Goal_SC33).
+	FILTER(?t != owl:Thing && ?t != as:Evidence && ?t != as:Used_Evidence && ?t != as:Stakeholder_Evidence)
+}
+GROUP BY ?t

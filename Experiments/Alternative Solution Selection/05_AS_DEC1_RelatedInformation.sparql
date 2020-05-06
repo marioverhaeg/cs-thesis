@@ -1,0 +1,31 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX as: <http://www.marioverhaeg.nl/as#>
+
+SELECT DISTINCT ?ri
+WHERE 
+{
+	# Gather systems
+	{
+		?sg as:defines ?bg .
+		?ri as:achieves ?sg .		
+	}
+	UNION
+	# Gather soft goals
+	{
+		?ri as:defines ?bg .
+	}
+	UNION
+	# Gather scores
+	{
+		?bg as:alternative_for ?bga .
+		?ri as:in_context_of ?bga .
+	}
+	UNION
+	# Gather behavioural goals
+	{
+		?bg as:alternative_for ?ri .
+	}
+	FILTER(?bg = as:Behavioural_Goal_SC21)
+}

@@ -1,0 +1,12 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX as: <http://www.marioverhaeg.nl/as#>
+SELECT ?s (SUM(?dv) as ?totalws)
+WHERE
+{
+	?sg as:has_information_soft_goal_weighted_significance ?ws .
+	?ws as:data_value ?dv .
+	?s as:achieves ?sg .
+}
+GROUP BY ?s
