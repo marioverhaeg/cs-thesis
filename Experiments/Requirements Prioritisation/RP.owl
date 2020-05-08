@@ -653,16 +653,30 @@
     
 
 
-    <!-- http://www.marioverhaeg.nl/rp#Conflicting_Information -->
+    <!-- http://www.marioverhaeg.nl/rp#Conflicting_Evidence -->
 
-    <owl:Class rdf:about="http://www.marioverhaeg.nl/rp#Conflicting_Information">
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/rp#Conflicting_Evidence">
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/rp#conflict_with_evidence"/>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/rp#disagrees_with"/>
                 <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
             </owl:Restriction>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/rp#Information"/>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.marioverhaeg.nl/rp#Consent_Evidence -->
+
+    <owl:Class rdf:about="http://www.marioverhaeg.nl/rp#Consent_Evidence">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.marioverhaeg.nl/rp#agrees_with"/>
+                <owl:someValuesFrom rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.marioverhaeg.nl/rp#Evidence"/>
     </owl:Class>
     
 

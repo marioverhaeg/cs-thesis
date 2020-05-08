@@ -237,23 +237,35 @@
                       rdfs:subClassOf :Information .
 
 
-###  http://www.marioverhaeg.nl/as#Conflicting_Information
-:Conflicting_Information rdf:type owl:Class ;
-                         owl:equivalentClass [ rdf:type owl:Restriction ;
-                                               owl:onProperty :conflict_with_evidence ;
-                                               owl:someValuesFrom :Evidence
-                                             ] ;
-                         rdfs:subClassOf :Information .
+###  http://www.marioverhaeg.nl/as#Conflicting_Evidence
+:Conflicting_Evidence rdf:type owl:Class ;
+                      owl:equivalentClass [ rdf:type owl:Restriction ;
+                                            owl:onProperty :disagrees_with ;
+                                            owl:someValuesFrom :Evidence
+                                          ] ;
+                      rdfs:subClassOf :Evidence .
+
+
+###  http://www.marioverhaeg.nl/as#Consent_Evidence
+:Consent_Evidence rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty :agrees_with ;
+                                        owl:someValuesFrom :Evidence
+                                      ] ;
+                  rdfs:subClassOf :Evidence .
 
 
 ###  http://www.marioverhaeg.nl/as#Contextual_Circumstance
 :Contextual_Circumstance rdf:type owl:Class ;
-                         rdfs:subClassOf :Evidence .
+                         rdfs:subClassOf :Evidence ;
+                         owl:disjointWith :Evaluated_External_Evidence ,
+                                          :Stakeholder_Evidence .
 
 
 ###  http://www.marioverhaeg.nl/as#Evaluated_External_Evidence
 :Evaluated_External_Evidence rdf:type owl:Class ;
-                             rdfs:subClassOf :Evidence .
+                             rdfs:subClassOf :Evidence ;
+                             owl:disjointWith :Stakeholder_Evidence .
 
 
 ###  http://www.marioverhaeg.nl/as#Evidence
@@ -327,7 +339,8 @@
 
 ###  http://www.marioverhaeg.nl/as#Stakeholder_Experience
 :Stakeholder_Experience rdf:type owl:Class ;
-                        rdfs:subClassOf :Stakeholder_Evidence .
+                        rdfs:subClassOf :Stakeholder_Evidence ;
+                        owl:disjointWith :Stakeholder_Value .
 
 
 ###  http://www.marioverhaeg.nl/as#Stakeholder_Value
