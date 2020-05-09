@@ -87,6 +87,7 @@
 
 ###  http://www.marioverhaeg.nl/as#has_information
 :has_information rdf:type owl:ObjectProperty ;
+                 owl:inverseOf :information_of ;
                  rdfs:range :Information .
 
 
@@ -151,6 +152,11 @@
 :in_context_of rdf:type owl:ObjectProperty ;
                rdfs:domain :Score ;
                rdfs:range :Behavioural_Goal .
+
+
+###  http://www.marioverhaeg.nl/as#information_of
+:information_of rdf:type owl:ObjectProperty ;
+                rdfs:domain :Information .
 
 
 ###  http://www.marioverhaeg.nl/as#information_used_for

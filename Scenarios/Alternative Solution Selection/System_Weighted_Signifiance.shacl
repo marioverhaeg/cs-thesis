@@ -6,10 +6,10 @@
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 @prefix as:    <http://www.marioverhaeg.nl/as#> .
 
-as:TestShape
+as:SoftGoalWeightedSignificanceShape
 	sh:targetClass as:System ;
 	sh:sparql [
-		sh:message "Test SHAPE." ;
+		sh:message "Structural: ensure the weighted significance of this soft_goal equals to 10." ;
 		sh:prefixes _:prefixes ;
 		sh:select """
 			SELECT $this (SUM(?dv) as ?totalws)
@@ -32,4 +32,3 @@ _:prefixes
 		]
 	;
 .
-

@@ -124,8 +124,8 @@ as:Stakeholder_EvidenceShape a sh:NodeShape;
 		sh:message "Reproducibility: enter a stakeholder that serves as the source of this stakeholder evidence."; 
 	].
 
-as:InformationShape a sh:NodeShape;
-	sh:targetClass as:Information; 
+as:UsedInformationShape a sh:NodeShape;
+	sh:targetClass as:Used_Information; 
 	sh:property [
 		sh:or (
 			[sh:path as:based_on_evidence; sh:minCount 1;]
@@ -150,7 +150,7 @@ as:InformationShape a sh:NodeShape;
 		sh:message "Conflict: reconsider using the evidence."; 
 	].
 	
-as:EvidenceShape a sh:NodeShape;
+as:UsedEvidenceShape a sh:NodeShape;
 	sh:targetClass as:Used_Evidence; 
 	sh:property [
 		sh:path as:agrees_with; 
@@ -159,7 +159,7 @@ as:EvidenceShape a sh:NodeShape;
 		sh:message "Consensus: ensure the evidence is in agreement with at least one additional evidence source."; 
 	].
 
-as:BehaviouralGoalShape a sh:NodeShape;
+as:UsedBehaviouralGoalShape a sh:NodeShape;
 	sh:targetClass as:Used_Behavioural_Goal; 
 	sh:property [
 		sh:path as:alternative_for;

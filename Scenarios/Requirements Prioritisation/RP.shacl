@@ -282,7 +282,7 @@ rp:RequirementShape a sh:NodeShape;
 		sh:message "Structural: Requirement does not address an Insight."; 
 	].
 
-rp:VisionShape a sh:NodeShape;
+rp:UsedVisionShape a sh:NodeShape;
 	sh:targetClass rp:Used_Vision;
 	sh:property [
 		sh:path rp:has_information_vision_statement;
@@ -356,8 +356,8 @@ rp:VisionShape a sh:NodeShape;
 		sh:message "Completeness: add data_description to the vision_current_state.";
 	].
 
-rp:InformationShape a sh:NodeShape;
-	sh:targetClass rp:Information; 
+rp:UsedInformationShape a sh:NodeShape;
+	sh:targetClass rp:Used_Information; 
 	sh:property [
 		sh:or (
 			[sh:path rp:based_on_evidence; sh:minCount 1;]
@@ -382,7 +382,7 @@ rp:InformationShape a sh:NodeShape;
 		sh:message "Conflict: reconsider using the evidence."; 
 	].
 	
-rp:EvidenceShape a sh:NodeShape;
+rp:UsedEvidenceShape a sh:NodeShape;
 	sh:targetClass rp:Used_Evidence; 
 	sh:property [
 		sh:path rp:agrees_with; 
