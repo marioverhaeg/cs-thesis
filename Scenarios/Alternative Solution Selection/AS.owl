@@ -43,8 +43,7 @@
 
 
 ###  http://www.marioverhaeg.nl/as#based_on_information
-:based_on_information rdf:type owl:ObjectProperty ;
-                      owl:inverseOf :information_used_for .
+:based_on_information rdf:type owl:ObjectProperty .
 
 
 ###  http://www.marioverhaeg.nl/as#conflict_with_evidence
@@ -159,12 +158,6 @@
                 rdfs:domain :Information .
 
 
-###  http://www.marioverhaeg.nl/as#information_used_for
-:information_used_for rdf:type owl:ObjectProperty ;
-                      rdfs:domain :Information ;
-                      rdfs:range :Information .
-
-
 ###  http://www.marioverhaeg.nl/as#required_for
 :required_for rdf:type owl:ObjectProperty .
 
@@ -179,18 +172,6 @@
 :shared_by rdf:type owl:ObjectProperty ;
            rdfs:domain :Stakeholder_Evidence ;
            rdfs:range :Stakeholder .
-
-
-###  http://www.marioverhaeg.nl/as#solved_by
-:solved_by rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf owl:topObjectProperty ;
-           owl:inverseOf :solves ;
-           rdfs:range :Solution .
-
-
-###  http://www.marioverhaeg.nl/as#solves
-:solves rdf:type owl:ObjectProperty ;
-        rdfs:domain :Solution .
 
 
 #################################################################
@@ -227,40 +208,6 @@
                   rdfs:subClassOf :Goal .
 
 
-###  http://www.marioverhaeg.nl/as#Complete_Information
-:Complete_Information rdf:type owl:Class ;
-                      owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
-                                                                   owl:onProperty :data_description ;
-                                                                   owl:someValuesFrom xsd:string
-                                                                 ]
-                                                                 [ rdf:type owl:Restriction ;
-                                                                   owl:onProperty :data_value ;
-                                                                   owl:someValuesFrom xsd:int
-                                                                 ]
-                                                               ) ;
-                                            rdf:type owl:Class
-                                          ] ;
-                      rdfs:subClassOf :Information .
-
-
-###  http://www.marioverhaeg.nl/as#Conflicting_Evidence
-:Conflicting_Evidence rdf:type owl:Class ;
-                      owl:equivalentClass [ rdf:type owl:Restriction ;
-                                            owl:onProperty :disagrees_with ;
-                                            owl:someValuesFrom :Evidence
-                                          ] ;
-                      rdfs:subClassOf :Evidence .
-
-
-###  http://www.marioverhaeg.nl/as#Consent_Evidence
-:Consent_Evidence rdf:type owl:Class ;
-                  owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty :agrees_with ;
-                                        owl:someValuesFrom :Evidence
-                                      ] ;
-                  rdfs:subClassOf :Evidence .
-
-
 ###  http://www.marioverhaeg.nl/as#Contextual_Circumstance
 :Contextual_Circumstance rdf:type owl:Class ;
                          rdfs:subClassOf :Evidence ;
@@ -294,15 +241,6 @@
 
 ###  http://www.marioverhaeg.nl/as#Information
 :Information rdf:type owl:Class .
-
-
-###  http://www.marioverhaeg.nl/as#Reproducible_Information
-:Reproducible_Information rdf:type owl:Class ;
-                          owl:equivalentClass [ rdf:type owl:Restriction ;
-                                                owl:onProperty :based_on_evidence ;
-                                                owl:someValuesFrom :Evidence
-                                              ] ;
-                          rdfs:subClassOf :Information .
 
 
 ###  http://www.marioverhaeg.nl/as#Score
@@ -405,8 +343,8 @@
 ###  http://www.marioverhaeg.nl/as#Used_Information
 :Used_Information rdf:type owl:Class ;
                   owl:equivalentClass [ rdf:type owl:Restriction ;
-                                        owl:onProperty :information_used_for ;
-                                        owl:someValuesFrom :Information
+                                        owl:onProperty :information_of ;
+                                        owl:someValuesFrom owl:Thing
                                       ] ;
                   rdfs:subClassOf :Information .
 
