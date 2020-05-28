@@ -1,0 +1,3 @@
+logic OWL
+pattern Reproducibility_Context [Class: DecisionRelevantInformation; Class: Information] = 
+ Class: [DecisionRelevantInformation] SubClassOf: [Information]

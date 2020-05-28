@@ -1,0 +1,5 @@
+logic OWL
+pattern Completeness_dp [Class: c; DataProperty: i; Datatype: r] =
+	DataProperty: i Domain: c Range: r
+pattern Completeness_op [Class: c; ObjectProperty: i; Datatype: r] =
+	ObjectProperty: i Domain: c Range: r

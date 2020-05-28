@@ -1,0 +1,11 @@
+logic OWL
+ontology EBM =
+ Class: Evidence
+ Class: Stakeholder
+ Class: Stakeholder_Evidence SubClassOf: Evidence 
+ Class: Stakeholder_Experience SubClassOf: Stakeholder_Evidence 
+ Class: Stakeholder_Value SubClassOf: Stakeholder_Evidence 
+ Class: Contextual_Circumstance SubClassOf: Evidence 
+ Class: Evaluated_External_Evidence SubClassOf: Evidence 
+ DisjointClasses: Stakeholder_Evidence, Contextual_Circumstance, Evaluated_External_Evidence	
+ DisjointClasses: Stakeholder_Experience, Stakeholder_Value

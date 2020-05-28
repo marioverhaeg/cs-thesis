@@ -1,0 +1,66 @@
+logic OWL
+pattern Completeness_dp [Class: c; DataProperty: i; Datatype: r] =
+	DataProperty: i Domain: c Range: r
+pattern Completeness_op [Class: c; ObjectProperty: i; Datatype: r] =
+	ObjectProperty: i Domain: c Range: r
+	
+ontology EBM =
+ Class: Evidence
+ Class: Stakeholder
+ Class: Stakeholder_Evidence SubClassOf: Evidence 
+ Class: Stakeholder_Experience SubClassOf: Stakeholder_Evidence 
+ Class: Stakeholder_Value SubClassOf: Stakeholder_Evidence 
+ Class: Contextual_Circumstance SubClassOf: Evidence 
+ Class: Evaluated_External_Evidence SubClassOf: Evidence 
+ DisjointClasses: Stakeholder_Evidence, Contextual_Circumstance, Evaluated_External_Evidence	
+ DisjointClasses: Stakeholder_Experience, Stakeholder_Value
+ 
+ontology Reproducibility_Basic = EBM then 
+ Class: Stakeholder 
+ Class: Information 
+ ObjectProperty: shared_by Domain: Stakeholder_Evidence Range: Stakeholder 
+ ObjectProperty: based_on_evidence Domain: Information Range: Evidence
+ ObjectProperty: based_on_information Domain: Information Range: Information Characteristics: Transitive
+ DisjointClasses: Information, Evidence
+
+ontology DecisionDesignPattern_Basic = Reproducibility_Basic then
+ %% Consensus pattern without reproducibility pattern
+ ObjectProperty: agrees_with Domain: Evidence Range: Evidence Characteristics: Transitive, Symmetric
+ ObjectProperty: based_on_evidence SubPropertyChain: based_on_evidence o agrees_with SubPropertyOf: based_on_evidence
+ %% Conflict pattern without reproducibility pattern
+ ObjectProperty: disagrees_with Domain: Evidence Range: Evidence Characteristics: Symmetric, Irreflexive
+ ObjectProperty: conflict_with_evidence SubPropertyChain: based_on_evidence o disagrees_with SubPropertyOf: conflict_with_evidence
+ %% Completeness pattern
+ Completeness_dp [data_value; Information; xsd:int] %% Data property and information class as parameters
+ Completeness_dp [data_description; Information; xsd:string] %% Data property and information class as parameters
+ %% Used information
+ ObjectProperty: information_of InverseOf: has_information
+ Class: Used_Information EquivalentTo: information_of some owl:Thing
+ %% Used evidence
+ ObjectProperty: evidence_used_for InverseOf: based_on_evidence
+ Class: Used_Evidence EquivalentTo: evidence_used_for some Information 
+ 
+pattern DecisionDesignPattern_Context [Class: i; Class: r] = 
+ Completeness_op[has_information[i]; r; i] %% Object property, root class, and information class as parameters
+ 
+ontology RequirementsPrioritisation = DecisionDesignPattern_Basic then
+ DecisionDesignPattern_Context[insight_value; Addressed_Insight]
+ DecisionDesignPattern_Context[challenge_frustration; Addressed_Challenge]
+ DecisionDesignPattern_Context[opportunity_motivation; Addressed_Opportunity] 
+ DecisionDesignPattern_Context[insight_business_case; Addressed_Insight]
+ DecisionDesignPattern_Context[vision_statement; Used_Vision] 
+ DecisionDesignPattern_Context[vision_measurable_objective; Used_Vision]
+ DecisionDesignPattern_Context[vision_target_condition; Used_Vision]
+ DecisionDesignPattern_Context[vision_current_state; Used_Vision]
+ Completeness_dp[time_frame; vision_measurable_objective; xsd:dateTime] 
+ Completeness_dp[time_frame; vision_statement; xsd:dateTime] 
+ Completeness_op[motivates; Addressed_Opportunity; Stakeholder] 
+ Completeness_op[frustrates; Addressed_Challenge; Stakeholder] 
+ DecisionDesignPattern_Context[requirement_knowledge_cost; Requirement] 
+ DecisionDesignPattern_Context[requirement_equipement_cost; Requirement]
+ DecisionDesignPattern_Context[requirement_size; Requirement]
+ DecisionDesignPattern_Context[requirement_increase_revenue; Requirement] 
+ DecisionDesignPattern_Context[requirement_decrease_cost; Requirement]
+ DecisionDesignPattern_Context[requirement_decrease_risk; Requirement]
+ DecisionDesignPattern_Context[challenge_frustration; Addressed_Challenge]
+ DecisionDesignPattern_Context[motivation_opportunity; Addressed_Opportunity]

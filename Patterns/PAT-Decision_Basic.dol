@@ -1,0 +1,42 @@
+logic OWL
+
+pattern Completeness_dp [Class: c; DataProperty: i; Datatype: r] =
+	DataProperty: i Domain: c Range: r
+pattern Completeness_op [Class: c; ObjectProperty: i; Datatype: r] =
+	ObjectProperty: i Domain: c Range: r
+	
+ontology EBM =
+ Class: Evidence
+ Class: Stakeholder
+ Class: Stakeholder_Evidence SubClassOf: Evidence 
+ Class: Stakeholder_Experience SubClassOf: Stakeholder_Evidence 
+ Class: Stakeholder_Value SubClassOf: Stakeholder_Evidence 
+ Class: Contextual_Circumstance SubClassOf: Evidence 
+ Class: Evaluated_External_Evidence SubClassOf: Evidence 
+ DisjointClasses: Stakeholder_Evidence, Contextual_Circumstance, Evaluated_External_Evidence	
+ DisjointClasses: Stakeholder_Experience, Stakeholder_Value
+ 
+ontology Reproducibility_Basic = EBM then 
+ Class: Stakeholder 
+ Class: Information 
+ ObjectProperty: shared_by Domain: Stakeholder_Evidence Range: Stakeholder 
+ ObjectProperty: based_on_evidence Domain: Information Range: Evidence
+ ObjectProperty: based_on_information Domain: Information Range: Information Characteristics: Transitive
+ DisjointClasses: Information, Evidence
+
+ontology DecisionOntologyPattern_Basic = Reproducibility_Basic then
+ %% Consensus pattern without reproducibility pattern
+ ObjectProperty: agrees_with Domain: Evidence Range: Evidence Characteristics: Transitive, Symmetric
+ ObjectProperty: based_on_evidence SubPropertyChain: based_on_evidence o agrees_with SubPropertyOf: based_on_evidence
+ %% Conflict pattern without reproducibility pattern
+ ObjectProperty: disagrees_with Domain: Evidence Range: Evidence Characteristics: Symmetric, Irreflexive
+ ObjectProperty: conflict_with_evidence SubPropertyChain: based_on_evidence o disagrees_with SubPropertyOf: conflict_with_evidence
+ %% Completeness pattern
+ Completeness_dp [data_value; Information; xsd:int] %% Data property and information class as parameters
+ Completeness_dp [data_description; Information; xsd:string] %% Data property and information class as parameters
+ %% Used information
+ ObjectProperty: information_of InverseOf: has_information
+ Class: Used_Information EquivalentTo: information_of some owl:Thing
+ %% Used evidence
+ ObjectProperty: evidence_used_for InverseOf: based_on_evidence
+ Class: Used_Evidence EquivalentTo: evidence_used_for some Information 

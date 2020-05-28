@@ -1,0 +1,8 @@
+logic OWL
+pattern Completeness_dp [Class: c; DataProperty: i; Datatype: r] =
+	DataProperty: i Domain: c Range: r
+pattern Completeness_op [Class: c; ObjectProperty: i; Datatype: r] =
+	ObjectProperty: i Domain: c Range: r
+
+pattern DecisionOntologyPattern_Context [Class: i; Class: r] = 
+ Completeness_op[has_information[i]; r; i] %% Object property, root class, and information class as parameters
