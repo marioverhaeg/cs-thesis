@@ -1,0 +1,161 @@
+% Load default font
+\renewcommand\familydefault{\sfdefault}
+\renewcommand{\arraystretch}{1.3}
+
+% Colors
+\definecolor{Red}{RGB}{226,0,21}
+\definecolor{Fuchsia}{RGB}{185,2,118}
+\definecolor{Violet}{RGB}{80,36,127}
+\definecolor{LightViolet}{RGB}{204,153,255}
+\definecolor{DarkBlue}{RGB}{0,86,145}
+\definecolor{DarkGray}{RGB}{82,95,107}
+\definecolor{LightBlue}{RGB}{0,142,207}
+\definecolor{Turquoise}{RGB}{0,168,176}
+\definecolor{LightGreen}{RGB}{120,190,32}
+\definecolor{DarkGreen}{RGB}{0,98,73}
+\definecolor{Black}{RGB}{0,0,0}
+
+% Glossary style
+\setglossarystyle{altlist}
+
+% Quoting style
+\quotingsetup{vskip=0.5pt}
+
+% Caption style
+\captionsetup[table]{font=footnotesize}
+\captionsetup[figure]{font=footnotesize}
+\captionsetup[equation]{font=footnotesize}
+
+% Fix f in math mode
+\newcommand{\f}{\mkern-2mu f\mkern-3mu}
+
+
+% Depth of TOC
+\setcounter{tocdepth}{2}
+
+% Prevent inspringen alinea
+\setlength\parindent{0cm}
+\setlength\parskip{0.7em}
+
+% Prevent large empty area above multiline equations and images
+\xapptocmd\normalsize{%
+\abovedisplayskip=-12pt 
+%\abovedisplayshortskip=0pt 
+%\belowdisplayskip=0pt 
+%\belowdisplayshortskip=0pt
+}{}{}
+
+% Spacing in lists
+\setlist[enumerate]{topsep=0pt,itemsep=2pt,partopsep=1ex,parsep=2pt}
+
+% Use different main color for each document:
+% Violet = Research plan
+
+% Style of links
+\hypersetup{
+colorlinks = true, 
+linkcolor = DarkBlue, 
+urlcolor = DarkBlue,
+citecolor = DarkBlue}
+
+% Spacing around sections
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*4}{*0}
+\titlespacing{\subsubsection}{0pt}{*2}{*0}
+\titlespacing{\paragraph}{0pt}{*0}{*0}
+\titlespacing{\subparagraph}{0pt}{*0}{*0}
+
+% Section
+\titleformat{\section}
+{\normalfont\huge\bfseries\centering\color{document}}{\thesection}{1.0em}{}
+
+% Subsection
+\titleformat{\subsection}
+{\normalfont\Large\bfseries}{\thesubsection}{1.0em}{}
+
+% Subsubsection
+\titleformat{\subsubsection}
+{\normalfont\large\bfseries}{\thesubsubsection}{1.0em}{}
+
+% Paragraph
+\titleformat{\paragraph}[hang]
+{\normalfont\normalsize\bfseries}{\theparagraph}{1.0em}{}
+
+% Subparagraph
+\titleformat{\subparagraph}[hang]
+{\normalfont\normalsize\bfseries}{\thesubparagraph}{1.0em}{}
+
+% Quotes
+\AtBeginEnvironment{quote}{\itshape}
+
+
+% New page after new section
+\newcommand{\sectionbreak}{\clearpage}
+
+% Style for title page
+\DeclareRobustCommand{\change}{%
+  \color{white}%
+}
+\DeclareRobustCommand{\stopchange}{%
+  \normalcolor
+}
+
+% Style for code section
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{RGB}{242,242,242}
+
+\renewcommand\lstlistingname{Code sample}
+\captionsetup[lstlisting]{font={footnotesize}}
+
+\lstset{
+    backgroundcolor=\color{backcolour}, 
+    commentstyle=\color{DarkGreen},
+    keywordstyle=\bfseries\color{Violet},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,  	
+    tabsize=3,
+    belowskip=1em,
+    aboveskip=1em,
+    float,
+    floatplacement=h,
+    firstnumber=1
+}
+
+\lstdefinelanguage{SHACL}{
+	morekeywords={select,prefixes,sparql,sh,path,severity,minCount,message,property,datatype,pattern,targetClass,maxCount,NodeShape,a,Violation,class,or,Info},
+	morecomment=[l][\color{DarkGreen}]{\#}
+}
+
+\lstdefinelanguage{GDOL}{morekeywords={pattern,Class,DataProperty,ObjectProperty,InverseRelation,DisjointClasses,SubClassOf,Domain,Range,targetClass,Violation,then,ontology,logic,OWL,Ontology,end,and,then},
+	morecomment=[l][\color{DarkGreen}]{\%\%}
+}
+
+\lstdefinelanguage{SPARQL1}{
+	morekeywords={SELECT,WHERE,GROUP,ORDER,BY,FILTER,DISTINCT,COUNT,UNION,PREFIX,AS,STRSTARTS,STRENDS,SUM,HAVING},
+	morecomment=[l][\color{DarkGreen}]{\#}
+}
+
+\lstdefinelanguage{SHACLSPARQL}{
+	morekeywords={select,prefixes,sparql,sh,path,severity,minCount,message,property,datatype,pattern,targetClass,maxCount,NodeShape,a,Violation,class,or,Info,SELECT,WHERE,GROUP,ORDER,BY,FILTER,DISTINCT,COUNT,UNION,PREFIX,AS,STRSTARTS,STRENDS,SUM,HAVING},
+	morecomment=[l][\color{DarkGreen}]{\#}
+}
+
+
+\newcommand\blankpage{
+    \null
+    \thispagestyle{empty}
+    \addtocounter{page}{-1}
+    \newpage
+    }

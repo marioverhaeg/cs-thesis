@@ -1,0 +1,91 @@
+[0] Config.pm:304> INFO - This is Biber 2.14
+[0] Config.pm:307> INFO - Logfile is 'Thesis.blg'
+[86] biber-MSWIN64:322> INFO - === 
+[111] Biber.pm:415> INFO - Reading 'Thesis.bcf'
+[273] Biber.pm:943> INFO - Found 55 citekeys in bib section 0
+[295] Biber.pm:4256> INFO - Processing section 0
+[295] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_SM.bib'
+[307] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_SM.bib' to ../../BIB_Articles_SM.bib
+[307] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_KM.bib'
+[307] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_KM.bib' to ../../BIB_Articles_KM.bib
+[307] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_PM.bib'
+[308] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_PM.bib' to ../../BIB_Articles_PM.bib
+[308] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_ME.bib'
+[308] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_ME.bib' to ../../BIB_Articles_ME.bib
+[308] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_DM.bib'
+[308] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_DM.bib' to ../../BIB_Articles_DM.bib
+[308] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_SO.bib'
+[308] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_SO.bib' to ../../BIB_Articles_SO.bib
+[308] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_BR.bib'
+[309] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_BR.bib' to ../../BIB_Articles_BR.bib
+[309] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_SMW.bib'
+[309] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_SMW.bib' to ../../BIB_Articles_SMW.bib
+[309] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_CON.bib'
+[309] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_CON.bib' to ../../BIB_Articles_CON.bib
+[309] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_THE.bib'
+[309] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_THE.bib' to ../../BIB_Articles_THE.bib
+[309] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_ODP.bib'
+[309] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_ODP.bib' to ../../BIB_Articles_ODP.bib
+[310] Utils.pm:75> INFO - Globbing data source '../../BIB_Articles_BI.bib'
+[310] Utils.pm:91> INFO - Globbed data source '../../BIB_Articles_BI.bib' to ../../BIB_Articles_BI.bib
+[310] Utils.pm:75> INFO - Globbing data source '../../BIB_Online.bib'
+[310] Utils.pm:91> INFO - Globbed data source '../../BIB_Online.bib' to ../../BIB_Online.bib
+[310] Utils.pm:75> INFO - Globbing data source '../../BIB_Books.bib'
+[310] Utils.pm:91> INFO - Globbed data source '../../BIB_Books.bib' to ../../BIB_Books.bib
+[310] Utils.pm:75> INFO - Globbing data source '../../BIB_Other.bib'
+[310] Utils.pm:91> INFO - Globbed data source '../../BIB_Other.bib' to ../../BIB_Other.bib
+[329] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_SM.bib' for section 0
+[338] bibtex.pm:1653> INFO - LaTeX decoding ...
+[410] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_SM.bib'
+[491] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_KM.bib' for section 0
+[495] bibtex.pm:1653> INFO - LaTeX decoding ...
+[509] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_KM.bib'
+[516] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_PM.bib' for section 0
+[525] bibtex.pm:1653> INFO - LaTeX decoding ...
+[600] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_PM.bib'
+[601] Utils.pm:304> WARN - Duplicate entry key: 'PM05' in file '../../BIB_Articles_PM.bib', skipping ...
+[679] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_ME.bib' for section 0
+[682] bibtex.pm:1653> INFO - LaTeX decoding ...
+[702] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_ME.bib'
+[710] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_DM.bib' for section 0
+[714] bibtex.pm:1653> INFO - LaTeX decoding ...
+[740] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_DM.bib'
+[767] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_SO.bib' for section 0
+[770] bibtex.pm:1653> INFO - LaTeX decoding ...
+[805] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_SO.bib'
+[822] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_BR.bib' for section 0
+[825] bibtex.pm:1653> INFO - LaTeX decoding ...
+[833] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_BR.bib'
+[836] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_SMW.bib' for section 0
+[838] bibtex.pm:1653> INFO - LaTeX decoding ...
+[846] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_SMW.bib'
+[849] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_CON.bib' for section 0
+[853] bibtex.pm:1653> INFO - LaTeX decoding ...
+[856] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_CON.bib'
+[859] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_THE.bib' for section 0
+[862] bibtex.pm:1653> INFO - LaTeX decoding ...
+[868] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_THE.bib'
+[874] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_ODP.bib' for section 0
+[877] bibtex.pm:1653> INFO - LaTeX decoding ...
+[892] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_ODP.bib'
+[912] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Articles_BI.bib' for section 0
+[915] bibtex.pm:1653> INFO - LaTeX decoding ...
+[941] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Articles_BI.bib'
+[977] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Online.bib' for section 0
+[981] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1002] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Online.bib'
+[1003] Utils.pm:304> WARN - Duplicate entry key: 'WEB12' in file '../../BIB_Online.bib', skipping ...
+[1055] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Books.bib' for section 0
+[1058] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1071] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Books.bib'
+[1071] Utils.pm:304> WARN - Duplicate entry key: 'BK03' in file '../../BIB_Books.bib', skipping ...
+[1087] Biber.pm:4455> INFO - Looking for bibtex format file '../../BIB_Other.bib' for section 0
+[1091] bibtex.pm:1653> INFO - LaTeX decoding ...
+[1098] bibtex.pm:1471> INFO - Found BibTeX data source '../../BIB_Other.bib'
+[1207] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1207] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1207] Biber.pm:4084> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[1207] Biber.pm:4090> INFO - No sort tailoring available for locale 'en-US'
+[1268] bbl.pm:652> INFO - Writing 'Thesis.bbl' with encoding 'UTF-8'
+[1316] bbl.pm:755> INFO - Output to Thesis.bbl
+[1321] Biber.pm:128> INFO - WARNINGS: 3

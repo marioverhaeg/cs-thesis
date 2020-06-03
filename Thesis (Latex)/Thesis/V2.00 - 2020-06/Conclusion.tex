@@ -1,0 +1,96 @@
+\section{Conclusion} \label{results}
+Compared to the methodology, we work through the questions the other way around. We first address the five sub-questions related to the ontology structure and data presentation. Then we address the main research question and discuss what we have learned.
+
+\subsection{Summary of our results}
+This section provides a summary of our results based on the research questions presented in section \ref{meth_scope} \nameref{meth_scope}.
+\paragraph{Ontology structure}
+\begin{center}
+\large\color{document}{\rqdsone}
+\end{center}
+The evidence-based management pattern stores four evidence types that we describe in section \ref{tf_dmm} \nameref{tf_dmm}: contextual circumstances, evaluated external evidence, stakeholder values, and stakeholder experience. The evidence-based management pattern is a generic ontology design pattern. Domain experts can easily instantiate this pattern into an evidence-based management ontology to extend evidence-based management into their (existing) ontology. In our context, the evidence-based management pattern provides the decision ontology pattern with evidence storage and classification capabilities. Additionally, the decision presentation pattern calculates the evidence-spread using the evidence classification of the evidence-based management pattern.
+
+\begin{center}
+\large\color{document}{\rqdstwo} 
+\end{center}
+We define premature information as a combination of information completeness and information reliability. Additionally, we define information reliability as a combination of reproducibility, conflict, and consensus. The evidence-based management ontology stores the evidence that serves as the base of decision-relevant information. We extend the evidence-based management ontology with the decision ontology pattern. We instantiate the decision ontology pattern into the decision specific ontology that stores decision-relevant information. The decision ontology relates decision-relevant information to evidence. The decision ontology pattern embeds the completeness, reproducibility, consensus, and conflict patterns. When instantiated, these patterns detect premature information using Semantic Web inferencing, consistency, and constraints.
+
+\begin{center}
+\large\color{document}{\rqdsthree} 
+\end{center}
+The decision ontology pattern uses Semantic Web inferencing to generate new object properties and classifies individuals. Inferencing shortens the path between two individuals by inferring a new object property based on a chain of existing object properties. The shortened path allows us to reduce the complexity of the constraints. Additionally, inferencing classifies individuals based on their properties. The classification ensures the individuals are validated using the right constraints.
+
+A reasoner infers object properties and classifies individuals based on complex characteristics, for example, transitivity or a chain of object properties. Semantic Web consistency prevents structural (human) mistakes in the structure of the ontology and, therefore, prevents the decision-maker from spending time on understanding inconsistent information. 
+
+The decision ontology pattern relates decision-relevant information to evidence. This relationship allows the completeness, reproducibility, consensus, and conflict patterns to detect premature information using SHACL cardinality constraints. The minimum cardinality detects incomplete information, unreproducible information, and evidence that does not meet the consensus requirements. The maximum cardinality detects conflicting evidence. We introduce parameters into the Semantic Web constraints to make them re-usable.
+
+\paragraph{Data presentation}
+\begin{center}
+\large\color{document}{\rqvisone} 
+\end{center}
+The information maturity-level represents mature and premature information. For example, if a decision can generate up to $100$ violations while it generates $30$ violations, the information maturity-level is 70\%. The information maturity-level is 0\% if the decision generates $100$ violations. This number, typically presented using a graph or chart, explains the decision-maker the ratio between premature and mature information. 
+
+\begin{center}
+\large\color{document}{\rqvistwo} 
+\end{center}
+Decisions have an impact on an organisation or environment. The impact of a decision can be positive and negative. For example, a decision can result in an increase (positive) or decrease (negative) of revenue. We assume the decision-maker wants to prevent a negative impact. The information maturity-level allows the decision-maker to understand the completeness and reliability of the decision-relevant information. For example, 50\% of the required information is missing and, the 50\% that is complete cannot be reproduced or is in conflict with other information. This situation indicates that the impact of the decision is not clear. The limited understanding of the impact of a decision can result in a negative impact, which is something the decision-maker wants to prevent.
+
+\begin{center}
+\large\color{document}{\rqvisthree} 
+\end{center}
+The decision presentation pattern presents the information maturity-level using three dashboards. The first dashboard presents the decision specific information maturity-level and evidence spread. The second dashboard presents the completeness, reproducibility, consensus, and conflict maturity-levels and allows the decision-maker to understand how the decision specific information maturity-level is calculated. The third dashboard presents the premature information that the decision-maker needs to address to increase the information maturity-level. The first dashboard allows a decision-maker to understand the current status of the information maturity-level quickly. When the decision-maker finds the information maturity-level too low, the decision-maker can use the second and third dashboard to define actions to increase the information maturity-level.
+
+\subsection{Main research question}
+\begin{center}
+\large\color{document}{\researchquestion}
+\end{center}
+The decision design pattern consolidates five generic ontology design patterns and a data presentation pattern. The evidence-based management pattern is a generic ontology design pattern that stores and classifies evidence. The decision ontology pattern uses four generic ontology design patterns: completeness, reproducibility, consensus, and conflict. These patterns use Semantic Web constraints to detect premature information. The decision presentation pattern calculates the information maturity-level using the detected premature information. The presentation of the information maturity-level gives the decision-maker an understanding of the decision-relevant information completeness and reliability. The decision-maker can use this understanding to increase the information maturity-level. The decision-maker can increase the information maturity-level by increasing the completeness, reproducibility, and consensus while decreasing the conflict. 
+\begin{center}
+\large\color{document}{A transparent information maturity-level allows the decision-maker to increase the information maturity-level, which contributes to evidence-based decision-making.}
+\end{center}
+
+\subsection{Discussion}
+%Dit bevat een discussie van de resultaten. Wat betekenen de conclusies, hoe kunnen ze in de literatuur worden gepositioneerd, wat hebben we nu echt geleerd? Dit is een substantieel stuk tekst van 1-2 bladzijden.
+What if a decision-maker wants to start using our work tomorrow to start analysing the decision-relevant information quality? 
+
+\paragraph{Practical considerations}
+The decision design pattern provides an information structure wrapped in an ontology. It provides mechanisms to extract the information maturity-level from this structure. However, the decision presentation pattern does not include a way to transform the numeric values representing the information maturity-level into a user-interface. The graphs and charts we present are mock-ups. Additionally, the tools we use to manipulate and validate the information, for example, Prot\'eg\'e and HETS, are not suitable for day-to-day usage. These tools require knowledge that a typical decision-maker or domain expert does not poses, for example, using a SPARQL query or a SHACL shape. This lack of knowledge can be easily mitigated by involving the right experts. Researches are still working on the extension that allows HETS to validate and instantiate GDOL. As a result, the instantiation of the generic ontology design patterns is not straightforward yet and requires the development of new tools or manual labour.
+
+\paragraph{Impact of the results}
+In this paragraph, we set aside the practical considerations and assume the decision-maker can use our work tomorrow. Imagine a situation in which two stakeholders are trying to convince a decision-maker to make a decision based on their argumentation and preference. The arguments both stakeholders bring into the decision are valid based on the information they present. However, the decision-maker does not know if this information can be trusted. The decision-maker can evaluate the information maturity-level if the organisation has implemented the decision design pattern. This analysis allows the decision-maker to understand the completeness, reproducibility, consensus, and conflict-related to the information the stakeholders present. The decision-maker can do two things using this knowledge:
+\begin{enumerate}
+\item Make a decision based on the combination of the available argumentation and the information maturity-level. 
+\item Decline to make a decision and instruct the stakeholders to improve their information maturity-level and, as a consequence, update their argumentation.
+\end{enumerate}
+Without knowing the information maturity-level, the argumentation brought by $Stakeholder\_A$ might be more persuasive compared to the argumentation brought by $Stakeholder\_B$. The argumentation might have convinced the decision-maker to decide in favour of $Stakeholder\_A$. However, if the information $Stakeholder\_A$ used for the argumentation is not reproducible or contains multiple conflicts, the decision might cause an unexpected outcome.
+
+\paragraph{Learnings}
+We learned that the combination of inferencing, consistency, and constraints, embedded in Semantic Web technologies, can be quite useful in the context of decision-making. Decision-makers base decision on some form of information and evidence. Semantic Web technologies can provide structure to decision-relevant information, infer new information, and detect information quality issues. Decision-makers can use the structural and inferencing capabilities Semantic Web technologies introduce to increase their understanding of the decision-relevant information. Additionally, Semantic Web technologies can detect information quality issues early that allows the decision-maker to complete missing information, ensure information is evidence-based and reproducible, increase the consensus of information, and correct conflicting information.
+
+\paragraph{Recommendation for future research}
+This section lists, based on our experience, the most relevant opportunities for future research. Solving the practical challenges would increase the applicability of our study.
+
+We manually process the output of the Semantic Web constraints, calculate the information maturity-level, and create mock-ups to present the information maturity-level. We suggest that a future study can build bridges between the violations that the Semantic Web constraints generate, the functions that calculate the information maturity-level, and the decision presentation pattern that presents the information maturity-level. This subject has opportunities for generalisation as well by, for example, defining a pattern for presenting constraint violations. Additionally, we instantiated re-usable SHACL constraints manually in this study. Generic constraint patterns could take SHACL shapes and instantiate them using parameters. Generic constraint design patterns could make it easier for domain experts to re-use existing SHACL shapes.
+
+The scope of this study excluded the manipulation of decision-relevant information. Decision-makers need to be able to manipulate the information to increase the information maturity-level. Several other studies at the Open University have looked at the usage of Fresnel forms in the context of the Semantic Web. It might be interesting to evaluate if a similar approach is suitable to extend the decision design pattern with, for example, a decision-relevant information manipulation pattern.
+
+Our last suggestion extends the usefulness of Semantic Web constraints, and specifically SHACL. We use Semantic Web constraints to validate the information completeness, reproducibility, consensus, and conflict of decision-relevant information. However, knowing the information completeness, reproducibility, consensus, and conflict might be useful in other scenarios as well. Compared to our study, the researchers should focus on Semantic Web constraints, while they extend the scope of the scenarios outside of the decision-making domain. This study could measure the quality of the information an ontology stores using Semantic Web constraints.
+
+\subsection{Reflection}
+This section describes my personal experience with the different phases of the graduation assignment. It includes a short reflection on the process, the result, the schedule, and the knowledge I have gained.
+
+\subsubsection{Subject}
+I remember the first discussions with Lloyd on my daily challenges in product management. One of the discussions made me think about a situation in which the organisation made a decision that just did not seem to make sense at the time. Could we have influenced the outcome of the decision by using evidence? Could we have influenced the outcome of the decision if we brought more structure into the discussion? These questions drove me towards the combination of product management and decision-making. The initial literature study revealed that I was not the only one interested in this subject. This result suggested I was on the right track.
+
+\subsubsection{Iterative approach}
+I started with an $80/20$ focus on product management and decision-making. Lloyd directed in flipping this ratio and generalising my contribution focused on decision-making. Eventually, the product management aspects served as helpful validation scenarios. 
+
+I honestly did not expect that the graduation assignment would be so iterative in its approach. I expected a \emph{waterfall} approach, in which the research preparation served as the design of the research and the graduation assignment executed that design. I eventually lost track of the number of changes in the main research question, methodology, and title. This approach allowed us to steer the research based on relevant learnings. The downside of this approach is that the schedule that I initially created was useless. The Gantt charts looked helpful in theory, but their content changed regularly. The approach made it very difficult to plan activities. When the approach is so agile, it might have been useful to also plan in an agile way using sprints of three weeks. Looking back at my process, this is what I did without knowing it at the time. I delivered a, more or less, useful version of the thesis document every three weeks.
+
+\subsubsection{Validation}
+The first 40 versions of this document included three scenarios to validate the decision design pattern: requirements prioritisation, software pricing, and alternative solution selection. When I noticed I needed over thirty pages to describe the first scenario, I knew this was not the right approach. I strategically reduced the length of the first scenario using Lloyd's guidance without sacrificing too much content. Additionally, we decided to remove the software pricing scenario from the scope. Requirements prioritisation and alternative solution selection seemed better suitable scenarios for a Computer Science student. I further reduced the length of alternative solution selection and focused on the difference of the alternative solution selection and requirements prioritisation decisions in the context of this study.
+
+\subsubsection{Result}
+We need to find ways to help decision-makers structure decision-relevant information and allow them to understand the quality of the information in a reasonable time. This challenge will require a continuous stream of research focusing on the information structure, the challenges we can address using this information, and the usability of large volumes of information. I think this study contributes to addressing this challenge. Other researchers can use the results to find ways to make evidence-based decision-making more concrete or can search for concrete tools to bring evidence-based decision-making closer to the decision-maker.
+
+\subsubsection{Learnings}
+I learned a lot from the process and the content of this study. The literature study revealed a lot of interesting materials related to decision-making and product management. This experience helps me to keep consuming scientific materials. The discussions with Lloyd forced me to change my thinking on several occasions. Exchanging thoughts is essential to improve the content and the process continuously. I would like to close this paragraph with the notion that I learned that plans change, and plans should change. They need to evolve based on what we learn.
