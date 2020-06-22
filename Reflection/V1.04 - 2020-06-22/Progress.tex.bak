@@ -1,0 +1,52 @@
+\section{Progress} \label{progress}
+This section describes my personal experience with the different phases of the graduation assignment and includes a short reflection on the process, the result, the schedule, and the knowledge I have gained.
+
+\subsection{Phase 1: Preparation}
+The goal of the preparation phase is to define the subject and get the support of a supervisor and second reader. I have started the literature study during the search for a subject. This happens while searching for background information. I want to work on a subject that is related to my daily work and would allow me to get a deeper understanding of the product management role, especially related to software products. 
+
+Over the last years, I have experienced several fundamental challenges in this role, mainly related to decision-making. Some decisions were made without considering the relevant information in the right way. After several discussions with Lloyd Rutledge, we both recognised a potential to link the challenges in the decision-making process to the Semantic Web. Even though this definition was vague, I started working through existing research materials. I started to find materials that confirmed my personal experience: decision-making in the software product management practise is mainly driven on intuition. Around the same time, I gained knowledge of the capabilities of the Semantic Web. It seems possible to validate information stored in the context of the Semantic Web. Assuming there would be something interesting to learn and contribute, I moved on to the research planning phase.
+
+\subsection{Phase 2: Research planning}
+The research planning phase would be quite a challenge. I formally started the IM0004 course (preparation of graduation) in August 2018\footnote{I decided to restart the search for a subject in February 2018}. This early start meant I need to finish the course before the end of August 2019. However, I already gained experience writing the research plan. Writing the research plan went quite smooth, and it was delivered in time to prevent me from re-registering the course.
+
+\subsubsection{Schedule}
+Not only the timeline of the schedule changed during the planning phase. The methodology also changed on a regular basis while I gained more knowledge on the research subject. Using Gantt charts made it easy to adjust the schedule whenever needed. The schedule is based on an average load of 14 hours per week. This is very challenging but should be doable. The goal is to finalise the graduation assignment around September 2020.
+
+\subsubsection{Results}
+The research planning resulted in the first version of the thesis document. Even though everything has changed since the first version of the thesis document was delivered in August 2019, and the time pressure was high in the last two weeks of August, I was pretty happy with the result at the time. The document itself looked nice, and the structure was thought through. The theoretical framework contains a lot of information from external sources. Writing it exposed me to details on the product management job (how do others experience this role?) and made me understand how decisions are made. I was doubting on the details of the methodology and knew I had to improve the quality of the English grammar. 
+
+\subsubsection{Learning}
+After the first version of the thesis document, including the methodology and schedule, was delivered, the document continued to evolve. It evolved together with my knowledge on the research subject and the available methods to get to a specific result. The plan is just a plan and is made to change.
+
+\subsection{Phase 3: Research execution, Cycle 1}
+This section presents my experiences with the research execution phase in several steps, based on the timeline of the assignment.
+
+\subsubsection{October 2019: Shift of focus}
+My thoughts were continuously focused on the context: software product management and decision-making. However, this is not the main contribution of the study. The main contribution is based on ontology design patterns that enable the detection of premature decision-making. After I recognised this, I adjusted the document structure, methodology, and schedule. I did not expect to have this much agility in making changes to these fundamental parts of the study.
+
+\subsubsection{December 2019: Experiments}
+I felt stuck after spending a couple of months on defining the patterns. The progress was limited to small extensions of the document, but a big step was missing. At the beginning of December, Lloyd pushed me into focusing on testing my patterns. I needed to define the experiments and just \emph{do} it. This worked really well, especially considering the upcoming Christmas period. Both December and January were fully focused on getting results for the defined experiments. I had several iterations between the patterns and the experiments, optimising the patterns searching for the optimal results.
+
+At the same time, I also noticed I needed to make a larger step in improving the grammar of the document. To improve this, I started experimenting with Grammarly, a cloud-based tool that suggests how written text could be improved. Version 1.25 of the thesis includes the first visible grammar improvements and includes the results of the first experiments.
+
+I do notice it starts to be more difficult to manage the dependencies within the context of the document itself. The amount of information increases every week. The new information needs to be consistent with the existing information. 
+
+\subsubsection{April 2020}
+The Corona virus (COVID-19) dominated the start of 2020. In the beginning of the year life was normal. However, from the beginning of March onwards, stores were closed and we were instructed to work from home whenever this was possible. It took me a week to find a new balance between my private life, work, and working on my thesis. However, after four weeks, I can only conclude that this situation allows me to spend more time on my thesis. I have moved from studying after work to studying before work, which makes it easier to spend the time, especially now that the spring and summer are coming.
+
+I am thinking of how I can start closing the thesis. I am close to spending my 600th hour and the discussions with my first supervisor tend to take a different direction every time, which makes it difficult to make a plan to finalize certain topics. I made major changes to the title and scope of the thesis and introduced names for the concepts that I am working on: decision design pattern, decision ontology pattern, and decision presentation pattern. These changes forced me to rethink the first validation decision. Additionally, Lloyd asked me toe rethink the structure of my thesis and bring the contribution and validation together. I am not sure what to do yet.
+
+At this moment I have written over 80 pages, while the length of a Computing Science thesis should be roughly 60 pages. This brings me to three options:
+\begin{enumerate}
+\item Bring back the number of experiments to one and fully focus on making that perfect.
+\item Reduce the level of detail in the experiments considerably.
+\item Accept an increase the number of pages 
+\end{enumerate}
+
+\subsection{Phase 4: Finalization}
+\subsubsection{Schedule}
+To be done.
+\subsubsection{Results}
+To be done.
+\subsubsection{Learning}
+To be done.

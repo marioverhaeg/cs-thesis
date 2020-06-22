@@ -1,0 +1,119 @@
+\section{Risk management}
+
+\subsection{Calculating risks}
+Risk is a combination of impact $I$ and probability $P$: $I \cdot P = R$. The tables (table \ref{table:doi} Impact, table \ref{table:dop} Probability) below show the classification of the impact and probability. 
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{12cm} |}
+\hline
+Impact & Description \\
+\hline
+1 &	Schedule delay of up to 1 month \\ 
+\hline
+2 &	Schedule delay of up to 3 months (one quarter) \\ 
+\hline
+3 &	Schedule delay of up to 6 months (two quarters) \\ 
+\hline
+4 &	Schedule delay of up to 12 months (one year) \\ 
+\hline
+\end{tabular}
+\caption{Definition of impact}
+\label{table:doi}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{12cm} |}
+\hline
+Probability & Description \\
+\hline
+1 &	1-10\% probability of this event happening over the next two years \\ 
+\hline
+2 &	11-25\% probability of this event happening over the next two years \\
+\hline
+3 &	26-50\% probability of this event happening over the next two years \\
+\hline
+4 &	51-100\% probability of this event happening over the next two years \\
+\hline
+\end{tabular}
+\caption{Definition of probability}
+\label{table:dop}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{12cm} |}
+\hline
+Risk & Description \\
+\hline
+1-3 & Low risk of failure. No need to mitigate risk. A short delay might be experienced. \\ 
+\hline
+4-7 & Medium risk of failure. Expects a short (1 month) to medium (3 months). Risk should be mitigated if simple mitigation strategies are available. \\
+\hline
+8-11 & High risk of failure. Expects considerable delays. Risks should be mitigated, even when this takes considerable effort. \\
+\hline
+12-16 &	Extreme high risk of failure. Risks should be discussed with the involved stakeholders and mitigated, even when this takes considerable effort. \\
+\hline
+\end{tabular}
+\caption{Definition of risk}
+\label{table:dor}
+\end{table}
+
+The combination of impact and probability results in the risk described in table \ref{table:dor}. \emph{Both the impact and probability are assigned to a risk-based on personal experience and are difficult to reproduce. } Next to the impact and probability, each risk needs to be assigned with a title, short description, chance of repetition and mitigation strategy.  Risks classified with a number higher than \emph{8} are serious and concrete mitigation steps are planned.
+
+\subsection{Understanding of related subjects} \label{urs}
+The initial analysis of related literature indicates that the subject is quite new. If existing materials are understood in the wrong way or their results are unreliable, the materials need to be re-analysed, which can be time-consuming. Finding multiple sources of information confirming the same theory should mitigate this risk. 
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{3cm} | p{3cm} |}
+\hline
+Impact: 2 & Probability: 2 & Risk: 4 \\
+\hline
+\end{tabular}
+\caption{Risk of understanding of related subjects}
+\label{table:urs}
+\end{table}
+
+\subsection{Availability of sample data} \label{aod}
+Once the reference decisions and their related constraints are created, the internal validation is planned. The internal validation requires sample data. If sample data cannot be found, it needs to be created based on examples, which are either known in public (deduced from existing case-studies) or based on anonymised samples from a real organisation. Using data from existing use-cases is preferred, as this makes the study easier to reproduce and are less time consuming to process. 
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{3cm} | p{3cm} |}
+\hline
+Impact: 1 & Probability: 3 & Risk: 3 \\
+\hline
+\end{tabular}
+\caption{Risk of the availability of data}
+\label{table:aod}
+\end{table}
+
+\subsection{Reliability of tools} \label{rot}
+The study is using several tools marked as \emph{beta}, for example, the SHACL4P Prot\'eg\'e plugin. If the functionality of the required tools does not behave as expected, bugs need to be filed, or alternative tools need to be found. In the worst case, alternative tools are not found, and the tools need to be replaced with manual effort.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{3cm} | p{3cm} |}
+\hline
+Impact: 3 & Probability: 2 & Risk: 6 \\
+\hline
+\end{tabular}
+\caption{Risk of the reliability of tools}
+\label{table:rot}
+\end{table}
+
+\subsection{Replicating existing work} \label{rew}
+Based on the literature study, there is no indication of any existing work that is replicated, but this risk needs to be considered.
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{| p{3cm} | p{3cm} | p{3cm} |}
+\hline
+Impact: 3 & Probability: 1 & Risk: 6 \\
+\hline
+\end{tabular}
+\caption{Risk of replicating existing work}
+\label{table:rew}
+\end{table}

@@ -1,0 +1,330 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introduction}{5}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.1}The prime challenge}{5}{subsection.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.2}Context}{5}{subsection.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3}Semantic web}{6}{subsection.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4}Main research question}{6}{subsection.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.5}Approach}{6}{subsection.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Theoretical framework}{7}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}Decision making: science or art?}{7}{subsection.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.1}Decision-making model}{7}{subsubsection.2.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.1.2}Technology-driven knowledge management}{8}{subsubsection.2.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Detecting premature information}{8}{subsection.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.2.1}Resource description framework schema (RDFS)}{8}{subsubsection.2.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.2.2}SPARQL Query Language for RDF}{8}{subsubsection.2.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.2.3}Web Ontology Language}{8}{subsubsection.2.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.2.4}Semantic web rule language (SWRL)}{9}{subsubsection.2.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.2.5}Shapes constraints language (SHACL)}{9}{subsubsection.2.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3}Transformation of information into decisions}{10}{subsection.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4}Generalisation}{11}{subsection.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.4.1}Ontology design patterns}{11}{subsubsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Content ontology design patterns}{12}{subsubsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design patterns}{12}{subsubsection.2.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.4.2}Information presentation design patterns}{12}{subsubsection.2.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5}Software product management}{13}{subsection.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.1}Concepts}{13}{subsubsection.2.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Insights, opportunities, challenges, and solutions}{13}{subsubsection.2.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Goals and requirements}{14}{figure.caption.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.2}Requirements prioritisation}{14}{subsubsection.2.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{An informal process that is driven by intuition}{15}{subsubsection.2.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Criteria that influence the priority}{15}{subsubsection.2.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Relative scale}{15}{subsubsection.2.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {2.5.3}Alternative solution selection}{16}{subsubsection.2.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Selecting the best possible solution}{16}{subsubsection.2.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Quantitative Reasoning}{16}{subsubsection.2.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.6}Conclusion}{17}{subsection.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Methodology}{19}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Research question}{19}{subsection.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.1}Scope}{19}{subsubsection.3.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology structure}{19}{subsubsection.3.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Data presentation}{19}{subsubsection.3.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.1.2}Out of scope}{20}{subsubsection.3.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Scientific approach}{20}{subsection.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Activities}{21}{subsection.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.1}Ontology design patterns}{21}{subsubsection.3.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2}Detecting completeness and reliability}{21}{subsubsection.3.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.3}Constraint design patterns}{22}{subsubsection.3.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.3.4}Presentation design patterns}{22}{subsubsection.3.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4}Validation}{23}{subsection.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.1}Reproducibility}{23}{subsubsection.3.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.2}Internal validity}{23}{subsubsection.3.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.3}External validity}{23}{subsubsection.3.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {3.4.4}Sample data}{23}{subsubsection.3.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Contribution}{24}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Decision design pattern}{24}{subsection.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Evidence-based management pattern}{25}{subsection.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.2.1}An evidence-based management structure}{25}{subsubsection.4.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.2.2}Ontology}{25}{subsubsection.4.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Consistency}{26}{figure.caption.18}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{26}{figure.caption.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic Ontology Design Pattern}{27}{figure.caption.19}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{27}{lstnumber.1.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}Decision ontology pattern}{27}{subsection.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.1}An information maturity-level structure}{27}{subsubsection.4.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.2}Completeness}{28}{subsubsection.4.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Detecting completeness}{28}{subsubsection.4.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology}{28}{subsubsection.4.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{28}{subsubsection.4.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inconsistency}{28}{figure.caption.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design pattern}{28}{figure.caption.21}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{29}{figure.caption.24}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.3}Reproducibility}{29}{subsubsection.4.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Detecting reproducibility}{29}{subsubsection.4.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology}{30}{subsubsection.4.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{30}{figure.caption.27}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inconsistency}{31}{table.caption.28}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design pattern}{31}{table.caption.28}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{31}{lstnumber.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.4}Consensus}{32}{subsubsection.4.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Detecting consensus}{32}{subsubsection.4.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology}{32}{subsubsection.4.3.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{33}{figure.caption.33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inconsistency}{33}{figure.caption.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design pattern}{33}{figure.caption.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{34}{lstnumber.8.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.5}Conflict}{34}{subsubsection.4.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Detecting conflict}{34}{subsubsection.4.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology}{34}{subsubsection.4.3.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{35}{figure.caption.38}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inconsistency}{35}{figure.caption.40}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design pattern}{36}{figure.caption.41}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{36}{lstnumber.10.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.3.6}Pattern consolidation}{36}{subsubsection.4.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Pattern dependencies}{37}{subsubsection.4.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Completeness and reproducibility using N-ary relations}{37}{subsubsection.4.3.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{\emph {Used} classes}{39}{figure.caption.47}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inferencing}{39}{figure.caption.48}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Inconsistency}{39}{figure.caption.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generic ontology design pattern}{39}{figure.caption.49}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Constraints}{40}{lstnumber.13.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Decision presentation pattern}{41}{subsection.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.4.1}Dashboard 1: Consolidated information maturity-level and evidence spread}{42}{subsubsection.4.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Maximum number of violations: Completeness}{43}{figure.caption.55}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Maximum number of violations: Reproducibility}{43}{equation.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Maximum number of violations: Consensus}{43}{equation.4.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Maximum number of violations: Conflict}{44}{equation.4.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Consolidated information maturity-level}{45}{equation.4.9}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Evidence spread}{45}{Item.25}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Overview dashboard}{46}{lstnumber.17.12}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.4.2}Dashboard 2: Information maturity-level in detail}{47}{subsubsection.4.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Pattern information maturity-levels}{47}{subsubsection.4.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Detailed information maturity-level dashboard}{47}{equation.4.11}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {4.4.3}Dashboard 3: Violations}{48}{subsubsection.4.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Individual dashboard}{48}{Item.29}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Evidence spread dashboard}{49}{figure.caption.62}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Validation}{51}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}Scenario 1: Requirements prioritisation}{51}{subsection.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.1}Decision ontology pattern}{51}{subsubsection.5.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.2}Instantiation of the decision ontology pattern}{52}{subsubsection.5.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Insight value}{54}{figure.caption.71}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Vision contribution}{54}{lstnumber.22.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Insight reach}{55}{lstnumber.25.10}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Requirement cost}{56}{lstnumber.26.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Requirement value}{57}{lstnumber.27.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Insight contribution}{58}{lstnumber.28.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Requirement confidence}{58}{lstnumber.29.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Instantiation overview}{58}{table.caption.86}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.3}Structural validation}{59}{subsubsection.5.1.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Structural validation: $Insight$ contributes to $Vision$}{59}{Item.33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Structural validation: $Requirement$ addresses $Insight$}{60}{lstnumber.30.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.4}Test scenarios for the decision ontology pattern}{61}{subsubsection.5.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 0 ($SC0$): Structural validation}{61}{subsubsection.5.1.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 1 ($SC1$): Decision ontology pattern}{62}{figure.caption.95}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 2 ($SC2$): Completeness pattern}{63}{figure.caption.98}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 3 ($SC3$): Reproducibility}{64}{figure.caption.100}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 4 ($SC4$): Conflict pattern}{65}{figure.caption.101}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 5 ($SC5$): Consensus pattern}{65}{figure.caption.104}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{The result of the test scenarios}{66}{figure.caption.106}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.5}Decision-relevant root individuals}{67}{subsubsection.5.1.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.1.6}Test scenarios for the decision presentation pattern}{67}{subsubsection.5.1.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Decision $DEC1$: $Requirement\_SC1$ versus $Requirement\_SC2$}{68}{subsubsection.5.1.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Decision $DEC2$: $Requirement\_SC3$ versus $Requirement\_SC4$}{71}{figure.caption.115}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Scenario 2: Alternative solution selection}{75}{subsection.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.1}Decision ontology pattern}{75}{subsubsection.5.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.2}Instantiation of the decision ontology pattern}{76}{subsubsection.5.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.3}Instantiation overview}{77}{subsubsection.5.2.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.4}Structural validation}{77}{subsubsection.5.2.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Structural validation: the sum of the weighted significance}{77}{Item.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Structural validation: behavioural goals}{78}{lstnumber.33.17}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.5}Test scenarios for the decision ontology pattern}{78}{subsubsection.5.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Scenario 0 ($SC0$): Structural validation}{78}{subsubsection.5.2.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{The result of the test scenarios}{79}{figure.caption.130}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.6}Decision-relevant root individuals}{80}{subsubsection.5.2.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.7}Test scenarios for the decision presentation pattern}{80}{subsubsection.5.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Decision $DEC1$: $Behavioural\_Goal\_SC21$}{81}{subsubsection.5.2.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Conclusion}{84}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}Summary of our results}{84}{subsection.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Ontology structure}{84}{subsection.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Data presentation}{85}{subsection.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2}Main research question}{85}{subsection.6.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3}Discussion}{86}{subsection.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Practical considerations}{86}{subsection.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Impact of the results}{86}{subsection.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Learnings}{86}{Item.37}%
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Recommendation for future research}{87}{Item.37}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{88}{Item.37}%

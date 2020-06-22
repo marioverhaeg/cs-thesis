@@ -1,0 +1,38 @@
+\documentclass[a4paper,11pt]{article}
+\input{../../Packages}
+\input{../../Style}
+\input{../../Glossary}
+\addbibresource{../../BIB_Articles_SM.bib}
+\addbibresource{../../BIB_Articles_KM.bib}
+\addbibresource{../../BIB_Articles_PM.bib}
+\addbibresource{../../BIB_Articles_ME.bib}
+\addbibresource{../../BIB_Articles_DM.bib}
+\addbibresource{../../BIB_Articles_BR.bib}
+\addbibresource{../../BIB_Articles_SMW.bib}
+%\addbibresource{../../BIB_Articles_THE.bib}
+\addbibresource{../../BIB_Online.bib}
+\addbibresource{../../BIB_Books.bib}
+\addbibresource{../../BIB_Other.bib}
+%% Commands
+\makeglossaries
+
+%% Document shared data
+\newcommand{\version}{1.04}
+\newcommand{\researchname}{Reflection}
+%% Define document colorscheme
+\colorlet{document}{DarkGray}
+
+\begin{document}
+\input{Title}
+%\input{Version}
+\tableofcontents
+% Research Planning
+%\input{Introduction}
+\input{Schedule}
+\input{RiskManagement}
+\input{Progress}
+
+\printbibliography[heading=bibintoc,title={Peer reviewed references},type=article]
+\printbibliography[heading=bibintoc,title={Other references}, nottype=article]
+\printglossary[title=Glossary]
+\end{document}

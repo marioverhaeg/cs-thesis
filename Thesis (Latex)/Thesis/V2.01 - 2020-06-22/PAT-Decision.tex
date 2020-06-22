@@ -1,0 +1,168 @@
+\subsection{Decision ontology pattern} \label{odp_decision_ontology}
+% Subsection structure:
+% Problem: what is the generalized problem?
+% 	Motivation: why is this problem scientifically important and/or interesting?
+% Solution: conceptual description of solution, including formal definition of GODP and SHACL shapes.
+% 	Illustration: images of GODP structure.
+% 	(Statistical)Analysis: how does the solution solve the problem?
+% 	Evaluation: are the results significant? What is the impact?
+\subsubsection{An information maturity-level structure}
+The evidence-based management, completeness, reproducibility, consensus, and conflict patterns solve separate generic problems. At the same time, these patterns overlap in their ontology structure. This overlap makes it difficult to use these patterns in the same environment. The decision design pattern provides the glue between the completeness, reproducibility, consensus, and conflict patterns, using the evidence-based management pattern as a base. 
+
+The decision presentation pattern combines the output from the completeness, reproducibility, consensus, and conflict patterns to calculate the \emph{information maturity-level} for a decision. The decision-maker needs to make a \emph{meta-decision} based on the information maturity-level:
+\begin{enumerate}
+\item If the information maturity-level is acceptable, the decision-maker can make the main-decision.
+\item If the information maturity-level is not acceptable, the decision-maker needs to increase the information maturity-level until it is acceptable.
+\end{enumerate}
+
+The outcome of the meta-decision depends on the complexity and impact of the main-decision. If the complexity and impact of the main-decision are low, a lower information maturity-level might be acceptable. However, if the impact and complexity of the main-decision are high, we expect that the requirements towards the information maturity-level are higher as well. 
+
+\begin{center}
+\large\color{document}{The decision ontology pattern increases the transparency of the completeness and reliability of decision-relevant information.} 
+\end{center}
+
+The scale of the impact and complexity of a decision are organisation dependent. For example, a C-level decision in an organisation with 3000 employees has a different impact compared to a C-level decision in an organisation with 300 employees. As a result, we cannot automate this meta-decision. In essence, a human needs to evaluate, based on knowledge and experience, if the complexity and impact of the decision justify the information maturity-level.
+
+\input{PAT-Completeness} 
+\input{PAT-Reproducibility} 
+\input{PAT-Consensus} 
+\input{PAT-Conflict} 
+
+\subsubsection{Pattern consolidation}
+The decision ontology pattern reduces the complexity of the instantiation of the completeness, reproducibility, consensus, and conflict patterns.
+
+\paragraph{Pattern dependencies}
+We cannot reproduce information that does not exist. We validate the reproducibility of existing, and therefore, complete information. The consensus and conflict patterns have a similar dependency on the reproducibility pattern. When information is evidence-based, we can validate if the evidence agrees with other evidence (and define the level of consensus) or if information disagrees with other evidence (and define the level of conflict). 
+
+\begin{center}
+\large\color{document}{There is no consensus or conflict without reproducibility. There is no reproducibility without completeness.} 
+\end{center}
+
+\paragraph{Completeness and reproducibility using N-ary relations}
+The completeness pattern validates the completeness of data properties and object properties. The reproducibility pattern validates the reproducibility of individuals using the object properties $based\_on\_evidence$ and $based\_on\_in{\f}ormation$. We need to relate a data property, containing decision-relevant information, to an object property. Figure \ref{fig:DecisionDesignPattern_NARY1} presents an example: $dataproperty1$ would be reproducible based on $based\_on\_evidence$. However, $dataproperty2$ would not be reproducible.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=10cm]{../../Images/04_Contribution/04_DecisionDesignPattern_NARY1.png}
+  \caption{How can we reproduce $dataproperty1$ based on the object property $based\_on\_evidence$? However, $dataproperty2$ is not reproducible.}
+  \label{fig:DecisionDesignPattern_NARY1}
+\end{figure}
+
+A property is a binary relation that relates two individuals \parencite{WEB16}. This concept makes it challenging to describe a relationship. In our case, we would describe the $based\_on\_evidence$ relationship with the data properties this relationship represents. We can describe object properties using annotations. Figure \ref{fig:DecisionDesignPattern_NARY2} presents the implementation of the annotation on the object property $based\_on\_evidence$ in Prot\'eg\'e, indicating that it $reproduces$ the $requirement\_cost$. 
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=16cm]{../../Images/04_Contribution/04_DecisionDesignPattern_NARY2.png}
+  \caption{The implementation of the annotation on the object property $based\_on\_evidence$ in Prot\'eg\'e, indicating that it $reproduces$ the $requirement\_cost$.}
+  \label{fig:DecisionDesignPattern_NARY2}
+\end{figure}
+
+However, annotation properties are merely descriptive and cannot define a characteristic of an object or data property \parencite{WEB12}. Therefore, the annotation properties are not suitable for inferencing or constraint validation. Additionally, we cannot use annotation properties to validate the reproducibility.
+
+We define n-ary relations to solve this challenge \parencite{WEB16}. An n-ary relation introduces a new class for information that we would typically store in a data property. The new class hosts the actual information as data properties. We define three types of individuals for our purpose: $root$, $in{\f}ormation$, and $target$. The $root$ provides the context for the $in{\f}ormation$. The $in{\f}ormation$ stores the actual information in two data properties ($data\_value$ and $data\_description$), and the $target$ serves as the target for reproduction. We use the $data\_value$ to give an integer to the information. The $data\_description$ describes the value. We suggest setting the $data\_value$ to $0$ when the context does not require the use of the $data\_value$. Figure \ref{fig:root_information_target} presents the definitions.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=10cm]{../../Images/04_Contribution/04_root_information_target.png}
+  \caption{The $root$, $in{\f}ormation$, and $target$ individuals in n-ary relation.}
+  \label{fig:root_information_target}
+\end{figure}
+
+Figure \ref{fig:DecisionDesignPattern_NARY3} presents an example of this concept. Class $r$, the root class, has two decision-relevant information properties: $n1$ and $n2$. These decision-relevant information properties have at least the $data\_value$ and $data\_description$ data properties. We classify them as $In{\f}ormation$. $n1$ and $n2$ are reproducible using the object properties $based\_on\_evidence$ or $based\_on\_in{\f}ormation$. We need to ensure that the completeness and reproducibility patterns function in this environment.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=17cm]{../../Images/04_Contribution/04_DecisionDesignPattern_NARY3.png}
+  \caption{Class $r$ with two decision-relevant information properties: $n1$ and $n2$. These decision-relevant information properties have a $data\_value$ and a $data\_description$. $n1$ and $n2$ are reproducible using the object property $based\_on\_evidence$.}
+  \label{fig:DecisionDesignPattern_NARY3}
+\end{figure}
+
+We validate the completeness of information using the $has\_information$ object property, including its range. We validate the reproducibility of information using the $based\_on\_evidence$ and $based\_on\_in{\f}ormation$ object properties.
+
+\paragraph{\emph{Used} classes}
+We use $Used\_*$ classes throughout the patterns to define the scope of the constraints. Each $Used\_*$ class is a subclass of its parent. We define the $Used\_*$ class in a way the reasoner classifies individuals that are relevant for the constraints. Figure \ref{fig:04_Used_Information} presents, for example, the $Used\_In{\f}ormation$ class. There might be a lot of individuals classified as $In{\f}ormation$. However, these individuals are only relevant to the decision-maker if the decision-maker uses them. The reasoner classifies individuals as $Used\_In{\f}ormation$ when they have the $in{\f}ormation\_of$ object property. We use the inverse of the $has\_in{\f}ormation\_*$ object property to infer that information is used in the context of a decision-relevant root individual. We use the $evidence\_used\_for$ object property to infer $Used\_Evidence$ similarly.  
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=12cm]{../../Images/04_Contribution/04_Used_Information.png}
+  \caption{The $Used\_In{\f}ormation$ configuration in Prot\'eg\'e. The reasoner classifies individuals as $Used\_In{\f}ormation$ when they have the $in{\f}ormation\_of$ object property.}
+  \label{fig:04_Used_Information}
+\end{figure} 
+
+\paragraph{Inferencing}
+We use inferencing in the decision design pattern to infer the information types from the object property $has\_information\_*$. The completeness pattern uses the information generated by the reasoner to validate the existence of specific data properties. Figure \ref{fig:04_DDP_Inference} presents an example in which individual $A$ is connected to individual $B$ by $has\_information\_temperature$. We set the range of $has\_information\_temperature$ to the class $Temperature$. As a result, the reasoner infers that $B$ must be of type $Temperature$. This mechanism allows the completeness pattern to validate if individuals classified as $Temperature$ have specific data or object properties.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=8cm]{../../Images/04_Contribution/04_DDP_Inference.png}
+  \caption{An example in which individual $A$ is connected to individual $B$ by $has\_information\_temperature$. We set the range of $has\_in{\f}ormation\_temperature$ to the class $Temperature$. As a result, the reasoner infers that $B$ must be of type $Temperature$.}
+  \label{fig:04_DDP_Inference}
+\end{figure}
+
+\paragraph{Inconsistency}
+We guard the consistency of the ontology using $DisjointClasses$. The $agrees\_with$ and $disagrees\_with$ object properties of the consensus and conflict patterns are naturally disjoint: when evidence $A$ agrees with evidence $B$, they cannot disagree at the same time. The decision design pattern inherits other inconsistency prevention mechanics from the completeness, reproducibility, consensus, and conflict patterns.
+
+\paragraph{Generic ontology design pattern} \label{dop-godp}
+The decision ontology pattern instantiates the completeness, reproducibility, consensus, and conflict patterns. These patterns have an overlap in their instantiation; for example, the consensus and conflict pattern both instantiate the $Reproducibility\_Base$. We reduce the overlap by defining new instantiation code. Code sample \ref{GODP_DDP_Instantiation_Basic} presents the instantiation code for the base ontology structure. The base instantiation code addresses the reproducibility, consensus, conflict, and a part of the completeness pattern. The base instantiation does not use any parameters.
+
+\begin{lstlisting}[float,language=GDOL,caption={The base GDOL instantiation code for the decision ontology pattern. The instantiation code is a combination of the completeness, reproducibility, consensus, and conflict patterns.},label={GODP_DDP_Instantiation_Basic}][H]
+pattern DecisionOntologyPattern_Basic = Reproducibility_Basic then
+ %% Consensus pattern without reproducibility pattern
+ ObjectProperty: agrees_with Domain: Evidence Range: Evidence Characteristics: Transitive, Symmetric
+ ObjectProperty: based_on_evidence SuperPropertyOf: based_on_evidence o agrees_with SubPropertyOf: based_on_evidence
+ %% Conflict pattern without reproducibility pattern
+ ObjectProperty: disagrees_with Domain: Evidence Range: Evidence Characteristics: Symmetric, Irreflexive
+ ObjectProperty: conflict_with_evidence SuperPropertyOf: based_on_evidence o disagrees_with SubPropertyOf: conflict_with_evidence
+ %% Completeness pattern
+ Completeness_dp [data_value][Information][xsd:int] %% Data property and information class as parameters
+ Completeness_dp [data_description][Information][xsd:string] %% Data property and information class as parameters
+ %% Used information
+ Object Property: information_of InverseOf: has_information
+ Class: Used_Information EquivalentTo: information_of some owl:Thing
+ %% Used evidence
+ Object Property: evidence_used_for InverseOf: based_on_evidence
+ Class: Used_Evidence EquivalentTo: evidence_used_for some Information 
+\end{lstlisting}
+ 
+Figure \ref{fig:DecisionDesignPattern} presents the instantiated decision ontology pattern. This ontology does not include context. We took the \textcolor{Violet}{violet} edges and nodes from the evidence-based management pattern, the \textcolor{DarkBlue}{blue} edges and nodes from the reproducibility pattern, the \textcolor{Red}{red} edges from the conflict pattern, and the \textcolor{Green}{green} edge from the consensus pattern. The completeness pattern does not include structural elements.
+ 
+\begin{figure}[H]
+\centering
+  \includegraphics[width=15cm]{../../Images/04_Contribution/04_DecisionDesignPattern.png}
+  \caption{The instantiated decision ontology pattern without context. We took the \textcolor{Violet}{violet} edges and nodes from the evidence-based management pattern, the \textcolor{DarkBlue}{blue} edges and nodes from the reproducibility pattern, the \textcolor{Red}{red} edges from the conflict pattern, and the \textcolor{Green}{green} edge from the consensus pattern.}
+  \label{fig:DecisionDesignPattern}
+\end{figure}
+
+The completeness and reproducibility patterns require a context-specific instantiation. We instantiate a new context-specific ontology structure for every information type that decision-makers use to make a decision. We use parameter $i$ to represent this class. Code sample \ref{GODP_DDP_Instantiation_Context} presents the context-specific instantiation code. 
+
+\begin{lstlisting}[float,language=GDOL,caption={The context-specific GDOL instantiation code to instantiate the decision design pattern. The code is a combination of the context-specific instantiation code of the completeness and reproducibility patterns.},label={GODP_DDP_Instantiation_Context}][H]
+pattern DecisionOntologyPattern_Context [Class: i; Class: r] = 
+ Completeness_op[has_information[i]; r; i] %% Object property, root class, and information class as parameters
+\end{lstlisting}
+
+\paragraph{Constraints}
+We need to combine the basic and context-dependent constraints of the completeness, reproducibility, consensus, and conflict patterns. The constraints of the reproducibility and conflict patterns target the $Used\_In{\f}ormation$ class. Code sample \ref{SHACL_DDP_Basic} combines the constraints for these two patterns into one SHACL shape. 
+
+\begin{lstlisting}[float,language=SHACL,caption={This code sample combines the constraints of the reproducibility, consensus, and conflict patterns. We have merged parts of the reproducibility and consensus patterns.},label={SHACL_DDP_Basic}][H]
+UsedInformationShape a sh:NodeShape;
+	sh:targetClass Used_Information; 
+	sh:property [
+		sh:or (
+			[sh:path based_on_information; sh:minCount 1;]
+			[sh:path based_on_evidence; sh:minCount 1;]
+		)
+		sh:severity sh:Violation; 
+		sh:minCount 1; 
+		sh:message "Reproducibility: increase the number of evidence sources for this information."; ];
+	sh:targetClass Information; 
+	# Conflict pattern
+	sh:property [
+		sh:path conflict_with_evidence; 
+		sh:severity sh:Violation; 
+		sh:maxCount 0; 
+		sh:message "Conflict detected. Please resolve the conflict or re-consider using this information."; ];
+\end{lstlisting}
+
+Code sample \ref{SHACL_REP_SH} is part of the reproducibility pattern and presents the constraints that validate if $Stakeholder\_Evidence$ is $shared\_by$ a stakeholder. Code sample \ref{SHACL_CON_LEV} presents the constraints that validate the consensus pattern. We include both code samples as-is into the decision ontology pattern.
+
+We instantiate the contextual constraints multiple times per scenario, depending on the need of the scenario. The completeness pattern is context-sensitive. Code sample \ref{SHACL_COM_DP} presents the only context-sensitive constraints we use in the decision design pattern.

@@ -1,0 +1,41 @@
+\section{Introduction} \label{introduction}
+% Environment of the challenge
+A software product manager needs to act as a spider in a web and is involved in many disciplines, for example, product lifecycle management, product requirements engineering, release planning, road mapping, and defining the product vision \parencite{PM02}. Keeping track of the sheer volume of information involved in these disciplines is a challenge. On top of that, in today's rapidly changing and uncertain environment, making strategic decisions has become increasingly complex \parencite{DM01}. The overall complexity of software product management leads to the identification of premature decision-making as one of the prime challenges in software product management \parencite{PM04}. 
+
+\subsection{The prime challenge}
+% The challenge
+Practitioners are forming communities \parencite{WEB01} that share experience on, for example, \href{https://www.mindtheproduct.com/2018/10/evaluating-experiments-when-the-numbers-lie/}{"Evaluating Experiments: When the Numbers lie"} and \href{https://www.mindtheproduct.com/2019/01/how-can-enterprise-product-managers-attain-maximum-insight-from-limited-datapoints/}{"How can Enterprise Product Managers Attain Maximum Insight from Limited Datapoints?"}. The scientific community starts to investigate the feasibility of evidence-based decision-making in software product management, and recognises product managers need evidence-based decision-making for long-term and sustainable software product development \parencite{PM04}. At the same time, product managers are afraid that evidence-based decision-making reduces flexibility by formalising the decision-making process. Although the feasibility of evidence-based decision-making is still unclear, existing literature shows that the data related to, for example, sales and pricing, is available but not used for decision-making.
+\begin{quoting}\itshape
+'We are collecting a lot of data, but simply not using it...' \parencite{PM04}
+\end{quoting}
+
+Requirements prioritisation is an example that we analyse in more detail. Imagine a large multi-national organisation that sells an enterprise management software product. This organisation  stores information in different systems. These systems store customer-related information: the backlog management system stores the source of a requirement and the problem the customer faces, the CRM system stores the interactions with customers, and the ERP system stores revenue related information. It is very time-consuming to structure this information in a way it supports the decision-making process. Imagine this organisation sells multiple products to the same customer, and the organisation uses a different backlog management system for each product. Storing this information in various systems increases the complexity even further. At the same time, the decision-making process is complex and involves multiple stakeholders. Those stakeholders all have a different view on a situation. 
+
+Unfortunately, this study cannot fully solve this challenge. We define a general data structure to store evidence-based information and use this structure to detect premature information and present the information maturity-level. The presentation of the information maturity-level helps the decision-maker to evaluate if the quality of the information used as a basis for the decision is acceptable. The decision-maker, a human being, is eventually responsible for making the (strategic) decision.
+
+\subsection{Context}
+% Bridge between problem and solution: Semantic Web
+The challenge touches several disciplines in which researchers are active: decision-making, knowledge management, and for validation purposes, (software) product management. \cite{DM07} describe a theory on evidence-based decision-making that concludes that the decision-making process is not purely rational. Evidence can come from multiple (non-scientific) sources and is interpreted differently among persons. Knowledge management influences the decision-making process by, for example, the structure in which organisations store knowledge \parencite{KM03}. The scientific community gives little attention to decision-making processes \parencite{PM04}. Additionally, it is not always clear to software product managers what information could serve as evidence.
+
+\subsection{Semantic web}
+% Why is the Semantic Web relevant in this problem context?
+Software product managers seem to be lacking insights into \emph{actionable} information: information that they should use to drive decisions. The Semantic Web promises to deliver actionable information:
+\begin{quoting}\itshape
+'The Semantic Web is a Web of actionable information...' \parencite{SM13}
+\end{quoting}
+The Semantic Web transforms meaningless and unstructured information into evidence that decision-makers can use in a specific context. This study uses the Semantic Web to store decision-relevant information into an evidence-based management structure. It uses inferencing, consistency, and constraints on top of this structure to detect premature information and calculate the information maturity-level of decision-relevant information. We generalize our approach and create several ontology design patterns that domain experts can re-use to solve similar challenges in a different context.
+
+\subsection{Main research question}
+\abstractkey
+
+\begin{center}
+\large\color{document}{\researchquestion}
+\end{center}
+
+\subsection{Approach}
+The decision design pattern includes the evidence-based management pattern, the decision ontology pattern, and the decision presentation pattern. We create the evidence-based management pattern to prepare existing ontologies for evidence-based decision-making. The decision ontology pattern provides the structure to detect premature information. Last, the decision presentation pattern calculates the information maturity-level and presents it to the decision-maker. We use Semantic Web consistency, inferencing, and constraints. We validate the decision design pattern using two software product management decisions:
+\begin{enumerate}
+\item \nameref{val-rp}
+\item \nameref{val-as}
+\end{enumerate}
+We instantiate parts of the decision design pattern in the context of these decisions. The instantiated patterns detect if decision-relevant information is premature. We calculate and present the information maturity-level in a way the software product manager can make the decision, or elaborate further on the decision-relevant information to increase the information maturity-level.

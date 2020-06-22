@@ -1,0 +1,34 @@
+\section{Contribution} \label{contribution}
+We propose the \emph{decision design pattern} to detect premature information and present the information maturity-level to a decision-maker. 
+
+\begin{center}
+\large\color{document}{The decision design pattern detects incomplete and unreliable information and presents the information maturity-level to a decision-maker.}
+\end{center}
+
+We define the reliability of decision-relevant information, described in section \ref{tf_dmm} \nameref{tf_dmm}, using the reproducibility of information, the consensus of evidence, and the conflict of evidence. 
+
+The decision-maker can decide to review the information maturity-level at any moment in time. Some decisions have deadlines, are essential, and potentially have a high impact on an organisation. Decision-makers do not make decisions with a high impact overnight, and they take their time to gather information and understand the exact impact of their decision. The information maturity-level should evolve while the decision-maker adds and changes information and the decision deadline comes closer. This way, the decision-maker uses the transparency of the information maturity-level to increase the completeness and reliability of the decision-relevant information.
+
+\subsection{Decision design pattern}
+We bridge the technological knowledge management strategy, described in section \ref{tf-val-rp} \nameref{tf-val-rp}, to the decision design pattern. The evidence-based management pattern stores the knowledge criteria that the decision-makers require to make the decision. The decision ontology pattern uses generic ontology design patterns to define a data structure on top of the evidence-based management pattern. We add the decision presentation pattern to present the information maturity-level. Figure \ref{fig:contribution_architecture} presents the decision design pattern. We encapsulate the completeness, reproducibility, consensus, and conflict patterns into the decision ontology pattern to cover overlap in these patterns and instantiate them in a way they can function side by side.
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=17cm]{../../Images/04_Contribution/Pattern_Architecture.png}
+  \caption{An overview of the decision design pattern that detects premature information and presents the information maturity-level. We encapsulate the completeness, reproducibility, consensus, and conflict patterns into the decision ontology design pattern.}
+  \label{fig:contribution_architecture}
+\end{figure}
+
+We base the information maturity-level on the completeness and reliability of the information. The completeness pattern ensures that the information that a decision-maker needs to make a decision is available. The information needs to be reproducible by relating it to specific evidence sources. Additionally, we use two other patterns to measure the reliability of evidence: the conflict-level, and the consensus-level. The consolidation layer calculates the decision specific information maturity-level. 
+
+With this approach, we deviate slightly from the categories we describe in section \ref{tf_dmm} \nameref{tf_dmm}. We remove the information collection methodology from the scope. We capture a part of the information collection methodology in the evidence types. For example, decision-makers typically gather evidence that we classify as $Contextual\_Circumstance$ using observation while they can only gather $Stakeholder\_Evidence$ by some form of interaction with the stakeholders. 
+
+The decision-maker gets a general understanding of the information completeness and reliability using the information maturity-level and evidence-spread dashboard. We present the completeness, reproducibility, consensus, and conflict maturity-levels when the decision-maker wants to understand the information maturity-level in more details. Last, we present the completeness, reproducibility, consensus, and conflict levels per individual, including the violations. The decision-maker can use these details to increase the information maturity-level of a decision or optimise the evidence-spread. 
+
+We present multiple ontology design patterns in the next sections of this chapter. Each pattern introduces a challenge and the ontology that addresses this challenge. The included generic ontology design pattern enables domain experts to re-use the ontology in different scenarios. Additionally, we describe how we guard the consistency of the ontology, and we describe the inferred information. We present the constraints that detect premature information in the last paragraph. Last, we introduce the main challenge of the decision presentation pattern and describe how we present the information maturity-levels to the decision-maker.
+
+Only the combination of the patterns we describe in this chapter can address the challenge captured by the research question. Therefore, we focus our validation on the combination of patterns in a specific scenario. Section \ref{validation} \nameref{validation} presents the scenario-based validation that combines the patterns into a solution that addresses the challenge of the research question.
+
+\input{PAT-EBM} 
+\input{PAT-Decision}
+\input{PAT-Presentation}

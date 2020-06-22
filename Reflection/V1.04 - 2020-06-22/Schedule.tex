@@ -1,0 +1,119 @@
+\section{Schedule} \label{schedule}
+I based the schedule on calendar months and a weekly availability of 17 hours (including vacations). The schedule starts in 2019, week 14 and ends in 2020 week 26. This period adds up to 62 weeks and results in 1054 hours. The combined workload of both the introduction work package (10ECTS) and primary work package (30ECTS) is 1120 hours. 
+
+I split the research process into four phases: 
+\begin{enumerate}
+\item Selecting and describing the subject and described.
+\item Writing the research plan in the second phase.
+\item Actual research phase.
+\item Finalizing the thesis, preparing the presentation, and giving the presentation. 
+\end{enumerate}
+
+\begin{figure}[!htbp]
+\centering
+\begin{ganttchart}[hgrid,vgrid,time slot format={isodate},time slot unit=month, bar/.style={fill=blue}]
+{2019-03-01}{2020-12-01}
+\gantttitlecalendar{year} \\
+\gantttitlecalendar{month} \\
+\ganttgroup[progress=100]{Preparation}{2019-04-01}{2019-09-30} \\
+\ganttmilestone{Registering for IM0004}{2019-05-11} \\
+\ganttgroup[progress=100]{Research planning}{2019-05-01}{2019-09-30} \\
+\ganttmilestone{Registering for IM990C}{2019-09-01} \\
+\ganttgroup[progress=100]{Research execution}{2019-08-01}{2020-05-01} \\
+\ganttgroup[progress=100]{Finalization}{2020-04-01}{2020-06-30} \\
+\ganttmilestone{Graduation}{2020-06-30}
+\end{ganttchart}
+\caption{Schedule overview, last update: \today}
+\label{figure:GC0}
+\end{figure}
+
+\newpage
+\subsection{Phase 1: Preparation} \label{preparation}
+The preparation phase focuses on finding and understanding a research subject. This phase includes a preliminary literature study. Figure \ref{figure:GC1} shows the schedule of the preparation phase.
+
+\begin{figure}[!htbp]
+\centering
+\begin{ganttchart}[hgrid,vgrid,time slot format={isodate},time slot unit=month]
+{2019-01-01}{2020-02-01}
+\gantttitlecalendar{year} \\
+\gantttitlecalendar{month} \\
+\ganttgroup[progress=100]{Preparation}{2019-02-01}{2019-06-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Selection of supervision}{2019-02-01}{2019-05-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Gathering information}{2019-05-01}{2019-06-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Definition of subject}{2019-04-01}{2019-06-01} \\
+\ganttmilestone{(Re-)Registering for IM0004}{2019-05-11}
+\end{ganttchart}
+\caption{Schedule phase 1: preparation, last update: \today}
+\label{figure:GC1}
+\end{figure}
+
+\newpage
+\subsection{Phase 2: Research Planning}
+The planning phase includes a general literature study and selecting the methodology. The goal of the literature study, in this phase, is to avoid double work and ensure the research subject is unique. 
+
+\begin{figure}[!htbp]
+\centering
+\begin{ganttchart}[hgrid,vgrid,time slot format={isodate},time slot unit=month]
+{2019-03-01}{2020-05-01}
+\gantttitlecalendar{year} \\
+\gantttitlecalendar{month} \\
+\ganttgroup[progress=100]{Research planning}{2019-05-01}{2019-09-01} \\
+% RESEACH PLANNING
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Introduction}{2019-05-01}{2019-06-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Theoretical Framework}{2019-05-01}{2019-07-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Methodology}{2019-05-01}{2019-09-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]
+{Final version}{2019-05-01}{2019-09-01} \\
+\ganttmilestone{Registering for IM990C}{2019-09-01}
+\end{ganttchart}
+\caption{Schedule phase 2: research planning, last update: \today}
+\label{figure:GC2}
+\end{figure}
+
+\newpage
+
+\subsection{Phase 3: Research execution} \label{research_execution}
+The research execution phase starts with the creation of ontology design patterns. I validate the set of patterns on two domain-specific reference decisions. 
+
+\begin{figure}[!htbp]
+\centering
+\begin{ganttchart}[hgrid,vgrid,time slot format={isodate},time slot unit=month]
+{2019-06-01}{2020-12-01}
+\gantttitlecalendar{year} \\
+\gantttitlecalendar{month} \\
+% Research execution general phase
+\ganttgroup[progress=100]{Research execution}{2019-08-01}{2020-06-30} \\
+
+% Design science cycles
+\ganttbar[bar/.append style={fill=document}, progress=100]{Main contribution}{2019-08-01}{2020-05-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]{Validation: requirements prioritisation}{2019-11-30}{2020-04-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]{Validation: alternative solution selection}{2020-03-30}{2020-05-01} \\
+\ganttbar[bar/.append style={fill=document}, progress=100]{Conclusion}{2020-05-01}{2020-06-30} 
+\end{ganttchart}
+\caption{Schedule phase 3: research execution, last update: \today}
+\label{figure:GC3}
+\end{figure}
+\newpage
+
+\subsection{Phase 4: Finalization}
+The announcement and planning of the thesis presentation, delivery of the reports and the presentation itself are part of the finalisation phase as well.
+
+\begin{figure}[!htbp]
+\centering
+\begin{ganttchart}[hgrid,vgrid,time slot format={isodate},time slot unit=month]
+{2020-03-01}{2021-04-01}
+\gantttitlecalendar{year} \\
+\gantttitlecalendar{month} \\
+\ganttgroup[progress=100]{Finalization}{2020-05-01}{2020-07-01} \\
+\ganttmilestone{Delivery}{2020-05-30} \\
+\ganttmilestone{Presentation}{2020-06-30}
+\end{ganttchart}
+\caption{Schedule phase 4: finalisation, last update: \today}
+\label{figure:GC4}
+\end{figure}

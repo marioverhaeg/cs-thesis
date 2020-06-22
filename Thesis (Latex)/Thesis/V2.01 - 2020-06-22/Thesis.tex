@@ -1,0 +1,64 @@
+\documentclass[a4paper,11pt]{article}
+\input{../../Packages}
+\input{../../Style}
+\input{../../Glossary}
+\addbibresource{../../BIB_Articles_SM.bib}
+\addbibresource{../../BIB_Articles_KM.bib}
+\addbibresource{../../BIB_Articles_PM.bib}
+\addbibresource{../../BIB_Articles_ME.bib}
+\addbibresource{../../BIB_Articles_DM.bib}
+\addbibresource{../../BIB_Articles_SO.bib}
+\addbibresource{../../BIB_Articles_BR.bib}
+\addbibresource{../../BIB_Articles_SMW.bib}
+\addbibresource{../../BIB_Articles_CON.bib}
+\addbibresource{../../BIB_Articles_THE.bib}
+\addbibresource{../../BIB_Articles_ODP.bib}
+\addbibresource{../../BIB_Articles_BI.bib}
+\addbibresource{../../BIB_Online.bib}
+\addbibresource{../../BIB_Books.bib}
+\addbibresource{../../BIB_Other.bib}
+%% Commands
+\makeglossaries
+\sloppy
+
+%% Document shared data
+\newcommand{\version}{2.01}
+
+%% Define document colorscheme
+\colorlet{document}{Violet}
+\colorlet{documentText}{white}
+
+% Include research questions
+\input{ResearchQuestion}
+
+% Actual document content
+\begin{document}
+\input{Title}
+%\input{Version}
+\newpage
+\input{Acknowledgement}
+\newpage
+\input{Abstract}
+\newpage
+
+\renewcommand{\baselinestretch}{0.40}\normalsize
+\thispagestyle{empty}
+\tableofcontents
+\renewcommand{\baselinestretch}{1.0}\normalsize
+
+% Research Planning
+\input{Introduction}
+\input{TheoreticalFramework}
+\input{Methodology}
+
+% Results
+\input{Contribution}
+\input{Validation}
+
+% Conclusion
+\input{Conclusion}
+\newpage
+
+\printbibliography[heading=bibintoc,title={References}]
+\printglossary[title=Glossary]
+\end{document}
